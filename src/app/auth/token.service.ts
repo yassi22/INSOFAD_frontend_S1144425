@@ -48,4 +48,38 @@ export class TokenService {
     return true;
   }
 
+
+  public getEmail(): string{   
+
+    const token = this.loadToken(); 
+    if(token != null){ 
+      const checkedToken : string = token!;  
+      const email = this.getPayload(checkedToken).email;  
+      return email; 
+    } else {  
+      //error message toevoegen
+      return ""; 
+    }
+
+ 
+
+  } 
+
+  public getUserId():number{ 
+    
+    const token = this.loadToken(); 
+    if(token != null){ 
+      const checkedToken : string = token!;  
+      const userId = this.getPayload(checkedToken).userId;  
+      return userId; 
+    } else {  
+      //error message toevoegen
+      return  0; 
+    }
+
+  }
+
+
+
+
 }

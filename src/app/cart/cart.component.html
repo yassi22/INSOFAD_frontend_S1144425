@@ -32,7 +32,7 @@
         <h4 class="fw-bold mb-0 text-black">Total: {{ (products_in_cart.length > 0 ? totalPrice : 0) | currency:'EUR' }}</h4>
       </div>
       <div class="order-form mt-5">
-        <form (submit)="placeOrder()">
+        <form (submit)="sendOrders()">
           <div class="form-group">
           </div>
           <div class="d-flex justify-content-end mt-4">

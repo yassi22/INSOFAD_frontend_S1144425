@@ -12,12 +12,10 @@
   </thead>
   <tbody>
     <tr *ngFor="let order of orders">
-      <td>{{ order.productName }}</td>
-      <td>{{ order.date | date }}</td>
-      <td>{{ order.quantity }}</td>
-      <td>{{ order.price }}</td>
-      <td>{{ order.totalPrice }}</td>
-      <td>{{ order.orderNumber }}</td>
+      <td>{{ order.orderTitle }}</td> 
+      <td>{{ order.orderPrice }}</td>
+
+   
     </tr>
   </tbody>
 </table>

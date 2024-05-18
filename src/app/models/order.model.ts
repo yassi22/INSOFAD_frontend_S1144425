@@ -1,8 +1,11 @@
-import { Product } from "./product.model";
+export class Order {
+    public product_id: number[];
+    userEmail: string; 
 
-export interface Order {
-    id: number;
-    userEmail: string;
-    products: Product[];
-    totalPrice: number;
+    constructor(product_id:number[], user_email:string){ 
+        this.product_id = product_id; 
+        this.userEmail = user_email;
+    } 
+   
+    
 }

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../services/order.service';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../auth/auth.service';
-import { LoginComponent } from '../auth/login/login.component';
+import { LoginComponent } from '../auth/login/login.component'; 
+import { GetOrder } from '../models/getorder.model';
 
 
 @Component({
@@ -13,30 +14,35 @@ import { LoginComponent } from '../auth/login/login.component';
   styleUrl: './order.component.scss'
 })
 export class OrderComponent implements OnInit{
-  orders: any[];
+  public orders: GetOrder[] = new Array<GetOrder>();
+  public loadingOrders: boolean = true;
+  public user_email : String; 
+ 
 
-  constructor(private orderService: OrderService, private authService: AuthService) {}
+  constructor(private OrderService: OrderService, private authService: AuthService) {}
 
   ngOnInit(): void {
-      this.authService.$userIsLoggedIn.subscribe(isLoggedIn => {
-        if (isLoggedIn) {
-          this.loadOrderHistory();
-        } else {
-          console.log("bye");
-        }
-      })
+      
+    this.OrderService
+    .getOrders()
+    .subscribe((orders: GetOrder[]) => {
+      this.loadingOrders = false;
+      this.orders = orders;
+    });
   }
 
-  public loadOrderHistory(): void{
-    this.orderService.getOrderHistory().subscribe(
-      (orderHistory) => {
-        this.orders = orderHistory;
-      },
-      (error) => {
-        console.error('Error fetching order history', error);
-      }
-    )
-  }
+  // public loadOrderHistory(): void{
+  //   this.orderService.getOrderHistory().subscribe(
+  //     (orderHistory) => {
+  //       this.orders = orderHistory;
+  //     },
+  //     (error) => {
+  //       console.error('Error fetching order history', error);
+  //     }
+  //   )
+  // } 
+
+
   }
 
 
