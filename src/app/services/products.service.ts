@@ -14,7 +14,7 @@ export class ProductsService {
 
   private baseUrl: string = environment.base_url + "/products"; 
 
-  private _orderEndpoint: string = 'http://localhost:8080/api/order';
+  private _orderEndpoint: string = 'http://localhost:8080/orders';
 
   constructor(private http: HttpClient) { }
 

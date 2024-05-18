@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { AuthService } from '../auth/auth.service';
 import { LoginComponent } from '../auth/login/login.component'; 
 import { GetOrder } from '../models/getorder.model';
+import { Order } from '../models/order.model';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class OrderComponent implements OnInit{
   public user_email : String; 
  
 
-  constructor(private OrderService: OrderService, private authService: AuthService) {}
+  constructor(private OrderService: OrderService) {}
 
   ngOnInit(): void {
       
