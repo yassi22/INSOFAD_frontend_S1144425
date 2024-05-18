@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { TokenService } from '../auth/token.service';   
 import { environment } from "../../environments/environment";
 import { GetOrder } from '../models/getorder.model';
-import { BehaviorSubject, Observable, tap } from 'rxjs'; 
+import { Observable } from "rxjs";
 
 
 @Injectable({
@@ -12,7 +12,7 @@ import { BehaviorSubject, Observable, tap } from 'rxjs';
 export class OrderService{
  
 
-    private baseUrl: string = environment.base_url + "/order/user/";
+    private baseUrl: string = environment.base_url + "/orders/user/";
     
     
     constructor(private http: HttpClient, private tokenService: TokenService) {} 

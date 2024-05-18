@@ -18,9 +18,11 @@ export class TokenService {
     return localStorage.getItem(this._localStorageTokenKey);
   }
 
-  private getPayload(token: string): JwtPayload{
-    const jwtPayload = token.split('.')[1];
-    return JSON.parse(atob(jwtPayload));
+  private getPayload(token: string): JwtPayload{ 
+    console.log(token)
+    const jwtPayload = token.split('.')[1]; 
+    console.log(jwtPayload)
+    return JSON.parse(atob(jwtPayload)); 
   }
 
   private tokenExpired(token: string): boolean {
@@ -71,6 +73,7 @@ export class TokenService {
     if(token != null){ 
       const checkedToken : string = token!;  
       const userId = this.getPayload(checkedToken).userId;  
+      console.log( "dit is de user id:" + JSON.stringify( userId))
       return userId; 
     } else {  
       //error message toevoegen
