@@ -12,9 +12,9 @@
           <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"
             routerLink="/">Home</a>
         </li>       
-        <li class="nav-item"><a class="nav-link" [routerLinkActive]="['active']" routerLink="/auth/login">Login</a>
+        <li class="nav-item"><a class="nav-link" [routerLinkActive]="['active']" *ngIf="!userIsLoggedIn" routerLink="/auth/login">Login</a>
         </li>
-        <li class="nav-item"><a class="nav-link" [routerLinkActive]="['active']" routerLink="/auth/register">Register</a>
+        <li class="nav-item"><a class="nav-link" [routerLinkActive]="['active']" *ngIf="!userIsLoggedIn" routerLink="/auth/register">Register</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" [routerLinkActive]="['active']" routerLink="/products">Products</a>
@@ -22,9 +22,9 @@
         <li class="nav-item">
           <a class="nav-link" [routerLinkActive]="['active']" routerLink="/cart">Cart ({{ amountOfProducts }})</a>
         </li>
-        <li class="nav-item"><a class="nav-link" [routerLinkActive]="['active']" routerLink="/order">Order History</a>
+        <li class="nav-item"><a class="nav-link" [routerLinkActive]="['active']"  routerLink="/order " *ngIf="userIsLoggedIn" >Order History</a>
         </li>
-        <li class="nav-item"><a class="nav-link" [routerLinkActive]="['active']" routerLink="/logout">Log Out</a>
+        <li class="nav-item"><a class="nav-link" [routerLinkActive]="['active']"   routerLink="/logout" *ngIf="userIsLoggedIn" >Log Out</a>
         </li>
 
       </ul>
