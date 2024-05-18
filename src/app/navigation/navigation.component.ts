@@ -4,6 +4,7 @@ import { CartService } from '../services/cart.service';
 import { Product } from '../models/product.model';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-navigation',
@@ -12,6 +13,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './navigation.component.html',
   styleUrl: './navigation.component.scss'
 })
+
 export class NavigationComponent implements OnInit {
   public showHotCupIcon: boolean = false;
   public userIsLoggedIn: boolean = false;
@@ -20,7 +22,7 @@ export class NavigationComponent implements OnInit {
 
   public amountOfProducts: number = 0;
 
-  constructor(private cartService: CartService, private router: Router) { }
+  constructor(private cartService: CartService, private router: Router,  private authService: AuthService) { }
 
   ngOnInit() {
     this.cartService.$productInCart.subscribe((products: Product[]) => {
@@ -28,11 +30,18 @@ export class NavigationComponent implements OnInit {
     })
     this.checkLoginState();
 }
-  public onLogout(): void{
-    this.router.navigate(['/']);
+  public onLogout(): void{ 
+    this.authService.logOut();
+    this.router.navigate(['']);
   }
-public checkLoginState(): void{
 
+
+public checkLoginState(): void{
+    this.authService
+    .$userIsLoggedIn
+    .subscribe((loginState: boolean) => {
+      this.userIsLoggedIn = loginState;
+    });
   }
 
 

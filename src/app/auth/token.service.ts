@@ -33,7 +33,9 @@ export class TokenService {
   }
 
   public isValid(): boolean{
-    const token: string | null = this.loadToken();
+    const token: string | null = this.loadToken(); 
+
+    console.log('Is token geldig:', token);
     
     if(!token){
       return false;
