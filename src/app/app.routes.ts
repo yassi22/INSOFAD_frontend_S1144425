@@ -9,14 +9,15 @@ import { authGuard } from './auth/auth.guard';
 import { OrderComponent } from './order/order.component';
 import { LogoutComponent } from './logout/logout.component';
 import { ProductDetailComponent } from './products/product-detail/product-detail.component';
-
+import { AdminComponent } from './admin/admin.component';
 
 export const routes: Routes = [
   {path: 'home', component: HomeComponent },
   {path: 'auth/login', component: LoginComponent },
   {path: 'products/:id', component:ProductDetailComponent},
   {path: 'auth/register', component: RegisterComponent},
-  {path: 'order', component: OrderComponent, canActivate: [authGuard] },
+  {path: 'order', component: OrderComponent, canActivate: [authGuard] }, 
+  {path: 'admin', component: AdminComponent, canActivate: [authGuard] },
   {path: 'products', component: ProductsComponent },
   {path: 'cart', component: CartComponent},
   {path: 'logout', component: LogoutComponent, canActivate: [authGuard]}

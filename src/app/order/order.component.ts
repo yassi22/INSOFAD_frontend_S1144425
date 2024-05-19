@@ -17,11 +17,12 @@ import { Order } from '../models/order.model';
 export class OrderComponent implements OnInit{
   public orders: GetOrder[] = new Array<GetOrder>();
   public loadingOrders: boolean = true;
-  public user_email : String; 
+  public user_email : String;  
+
  
 
   constructor(private OrderService: OrderService) {}
-
+ 
   ngOnInit(): void {
       
     this.OrderService

@@ -5,6 +5,7 @@ import { Product } from '../models/product.model';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../auth/auth.service';
+import { TokenService } from '../auth/token.service';
 
 @Component({
   selector: 'app-navigation',
@@ -16,19 +17,21 @@ import { AuthService } from '../auth/auth.service';
 
 export class NavigationComponent implements OnInit {
   public showHotCupIcon: boolean = false;
-  public userIsLoggedIn: boolean = false;
+  public userIsLoggedIn: boolean = false; 
+  public hasAdminRole: boolean = false; 
   
   public title: string = 'Just Another Day';
 
   public amountOfProducts: number = 0;
 
-  constructor(private cartService: CartService, private router: Router,  private authService: AuthService) { }
+  constructor(private cartService: CartService, private router: Router,  private authService: AuthService, private tokenService: TokenService) { }
 
   ngOnInit() {
     this.cartService.$productInCart.subscribe((products: Product[]) => {
       this.amountOfProducts = products.length;
     })
     this.checkLoginState();
+    this.checkRole();
 }
   public onLogout(): void{ 
     this.authService.logOut();
@@ -43,6 +46,27 @@ public checkLoginState(): void{
       this.userIsLoggedIn = loginState;
     });
   }
+
+
+public checkRole(): void {   
+  const getRole = this.tokenService.getRole();  
+  console.log("dit is de role van de gebruiker: " + getRole);  
+  if (getRole == "ROLE_ADMIN") {
+    
+    this.hasAdminRole = true; 
+
+  } else { 
+    this.hasAdminRole = false; 
+  } 
+
+   
+  // if(getRole == "ROLE_ADMIN"){ 
+  //     this.hasAdminRole = true;
+  // } else { 
+  //    this.hasAdminRole = false; 
+  // }
+ 
+}
 
 
 }

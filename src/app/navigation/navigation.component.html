@@ -11,19 +11,21 @@
         <li class="nav-item">
           <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"
             routerLink="/">Home</a>
-        </li>       
+        </li>        
+        <li class="nav-item">
+          <a class="nav-link" [routerLinkActive]="['active']" routerLink="/products">Products</a>
+        </li>
         <li class="nav-item"><a class="nav-link" [routerLinkActive]="['active']" *ngIf="!userIsLoggedIn" routerLink="/auth/login">Login</a>
         </li>
         <li class="nav-item"><a class="nav-link" [routerLinkActive]="['active']" *ngIf="!userIsLoggedIn" routerLink="/auth/register">Register</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLinkActive]="['active']" routerLink="/products">Products</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link" [routerLinkActive]="['active']" routerLink="/cart">Cart ({{ amountOfProducts }})</a>
         </li>
-        <li class="nav-item"><a class="nav-link" [routerLinkActive]="['active']"  routerLink="/order" *ngIf="userIsLoggedIn" >Order History</a>
-        </li>
+        <li class="nav-item"><a class="nav-link" [routerLinkActive]="['active']"  routerLink="/order" *ngIf="userIsLoggedIn" >Order History</a> 
+        </li> 
+      <li class="nav-item"><a class="nav-link" [routerLinkActive]="['active']"  routerLink="/admin" *ngIf="userIsLoggedIn && hasAdminRole">Admin panel</a> 
+      </li>
         <li class="nav-item"><a class="nav-link" [routerLinkActive]="['active']"   routerLink="/logout" *ngIf="userIsLoggedIn" >Log Out</a>
         </li>
 

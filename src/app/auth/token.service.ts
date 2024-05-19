@@ -72,15 +72,32 @@ export class TokenService {
     const token = this.loadToken(); 
     if(token != null){ 
       const checkedToken : string = token!;  
-      const userId = this.getPayload(checkedToken).userId;  
-      console.log( "dit is de user id:" + JSON.stringify( userId))
+      const userId = this.getPayload(checkedToken).userId;    
+      console.log( "dit is de user id:" + JSON.stringify( userId))  
       return userId; 
     } else {  
       //error message toevoegen
       return  0; 
     }
 
+  } 
+
+  public getRole():string{ 
+    
+    const token = this.loadToken();  
+    if(token != null){ 
+      const checkedToken : string = token!;  
+      const userRole = this.getPayload(checkedToken).role;  
+      console.log( "dit is de user role:" + JSON.stringify(userRole))
+      return userRole; 
+    } else {  
+      //error message toevoegen
+      return  "er is iets miss gegaan"; 
+    }
+
   }
+
+
 
 
 
