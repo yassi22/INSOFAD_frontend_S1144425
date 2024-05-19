@@ -31,7 +31,7 @@
             @for (productvariant of product.variants; track $index) {
                     {{productvariant.name}} <br>
             @for (productoptions of productvariant.options; track $index) {   
-                 <input type="radio" name={{productvariant.name}} (click)="addToPrice(productoptions.added_price, productvariant)"> {{productoptions.name}}:   Extra: price :{{productoptions.added_price}}
+                 <input type="radio" name={{productvariant.name}} (click)="addToPrice(productoptions.added_price, productvariant, productoptions)"> {{productoptions.name}}:   Extra: price :{{productoptions.added_price}}
 
                  <br><br>
             }
