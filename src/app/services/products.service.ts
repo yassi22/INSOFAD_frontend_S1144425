@@ -14,8 +14,9 @@ export class ProductsService {
 
   private baseUrl: string = environment.base_url + "/products"; 
 
-  private _orderEndpoint: string = 'http://localhost:8080/api/orders';
+  private _orderEndpoint: string = 'http://localhost:8080/api/orders'; 
 
+ 
   constructor(private http: HttpClient) { }
 
   public getProducts(): Observable<Product[]> {
@@ -28,6 +29,7 @@ export class ProductsService {
 
   public getProductByIndex(id: number): Observable<Product> {
     return this.http.get<Product>(`${this.baseUrl}/${id}`);
+
   }
 
   public updateProductByIndex(id: number, product: Product): Observable<Product> {
