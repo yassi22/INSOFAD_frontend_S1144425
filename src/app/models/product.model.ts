@@ -1,5 +1,7 @@
 // import { Category } from "./category.model";
 
+import { ProductVariant } from "./productvariant.model";
+
 export class Product {
   public id: number;
   public name: string;
@@ -9,6 +11,7 @@ export class Product {
   public fitting: string;
   public imageUrl: string;
   public quantity: number;
+  public variants: ProductVariant[]; 
 
   constructor(id: number, name: string, description: string, price: number, 
     category: string, fitting: string, imageUrl:string, quantity:number = 1) {

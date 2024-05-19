@@ -13,7 +13,8 @@ export class AuthService {
   private _loginEndpoint: string = 'http://localhost:8080/api/auth/login';
   private _registerEndpoint: string = 'http://localhost:8080/api/auth/register';
 
-  public $userIsLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public $userIsLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false); 
+  public $userRole: BehaviorSubject<string | null > = new BehaviorSubject<string | null >(null); 
 
   constructor(private http: HttpClient, private tokenService: TokenService) {
     if (this.tokenService.isValid()) {
@@ -29,6 +30,7 @@ export class AuthService {
         tap((authResponse: AuthResponse) => {
           this.tokenService.storeToken(authResponse.token);
           this.$userIsLoggedIn.next(true);
+          this.$userRole.next(this.tokenService.getRole());
         })
       );
   }
@@ -39,13 +41,15 @@ export class AuthService {
       .pipe(
         tap((authResponse: AuthResponse) => {
           this.tokenService.storeToken(authResponse.token);
-          this.$userIsLoggedIn.next(true);
+          this.$userIsLoggedIn.next(true); 
+          this.$userRole.next(this.tokenService.getRole());
         })
       );
   }
 
   public logOut(): void {
     this.tokenService.removeToken();
-    this.$userIsLoggedIn.next(false);
+    this.$userIsLoggedIn.next(false); 
+    this.$userRole.next(null); 
   }
 }

@@ -1,5 +1,6 @@
 <div class="container">
-    <div class="row justify-content-md-center">
+    <div class="row justify-content-md-center"> 
+        @if (product) {
       <div class="col col-lg-6">
         <p class="text-center mt-4 fs-1 fw-bold"> {{product.name}}</p>  
         <img src={{product.imageUrl}} class="img-fluid rounded-3" alt="Picture clothing"/>  
@@ -21,16 +22,31 @@
  
         <p class="text-right fst-normal fs-5"> {{product.fitting}}</p>    
 
-  
 
         <h4 class="text-right mt-5 fw-bold">Voorraad: </h4> 
  
-        <p class="text-right fst-normal fs-5"> {{product.quantity}}</p>    
+        <p class="text-right fst-normal fs-5"> {{product.quantity}}</p>      
+
+        @if (product.variants.length > 0 && product.variants.length > 0 ) { 
+            @for (productvariant of product.variants; track $index) {
+                    {{productvariant.name}} <br>
+            @for (productoptions of productvariant.options; track $index) {   
+                 <input type="radio" name={{productvariant.name}} (click)="addToPrice(productoptions.added_price, productvariant)"> {{productoptions.name}}:   Extra: price :{{productoptions.added_price}}
+
+                 <br><br>
+            }
+            } 
+
+        }
+        <br><br>
 
         <button (click)="buyProduct(product)" class="btn btn-primary float-right">
             Buy</button> 
             
   
-      </div>
-    </div>  
+      </div> 
+    } @else { 
+        <div>Proudct niet gevonden</div>
+    } 
+    </div>   
     </div>
