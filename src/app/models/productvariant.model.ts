@@ -6,7 +6,8 @@ export class ProductVariant {
     public id: number;
     public name: string;
     public description: string;
-    public options: Options[]; 
+    public options: Options[];  
+    public foundOptions: Options[];
   
     constructor(id: number, name: string, description: string, options: []) {
         this.id = id;

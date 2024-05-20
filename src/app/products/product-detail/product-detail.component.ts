@@ -18,7 +18,9 @@ export class ProductDetailComponent {
 
   private productId: number; 
   public selectedProductVariant: [ProductVariant | null , number | null ] = [null, null];  
-  public defaultprice: number = 0; 
+  public defaultprice: number = 0;   
+
+  public optionsDict: {[key: string]: Options} = {};   
   
   
   @Input() public product!: Product;
@@ -45,42 +47,38 @@ export class ProductDetailComponent {
         this.defaultprice = product.price; 
         console.log("dit is een update van de prijs" + this.defaultprice);
       } 
-      console.log(product);
+  
       console.log(product.price);
     });  
     
    
 
-  }  
+  }   
 
-  public addToPrice(additional_cost: number, productVariant:ProductVariant, productoptions:Options){    
+
+
+  public addToPrice(additional_cost: number, productVariant:ProductVariant, productOptions:Options){    
       console.log(productVariant); 
-      console.log(productoptions);     
-      console.log(this.defaultprice); 
+      console.log(productOptions);     
+      console.log(this.defaultprice);  
+
+      // const productOptionsList[] =  productOptions; 
       
-      let options_cost = productoptions.added_price;   
+      let options_cost = productOptions.added_price;    
       
-      // de default prijs van product wordt opgeteld met de aangeklikte option. 
-      
-      this.product.price =  this.defaultprice + options_cost; 
+      this.optionsDict[productVariant.name] = productOptions  
+      console.log(this.optionsDict);
 
+      let total_additionalcost = 0; 
 
-
-      // this.selectedProductVariant.forEach((variant: any) => { 
-      //     if(variant.includes(productVariant)) {
-      //      let previous_additional_cost =  this.selectedProductVariant[1]; 
-      //      this.product.price -= previous_additional_cost ?? 0; 
-      //      this.product.price += additional_cost; 
-      //      variant[1] = additional_cost; 
-      //       return;  
-      //     } 
-
-      //     this.selectedProductVariant.push(productVariant); 
-      //     this.selectedProductVariant[1] = additional_cost;  
-      //     this.product.price += additional_cost; 
-      // });
-      // this.product.price += additional_cost; 
     
+      for( let optionKey in this.optionsDict){ 
+        let optionPrice = this.optionsDict[optionKey].added_price;   
+        console.log(optionPrice);
+        total_additionalcost += optionPrice; 
+      }   
+
+      this.product.price = this.defaultprice + total_additionalcost;     
 
   } 
 
@@ -90,7 +88,34 @@ export class ProductDetailComponent {
 
 
   public buyProduct(product: Product) {
-    this.cartService.addProductToCart(product)
+    console.log(this.optionsDict);
+    console.log(product.variants); 
+
+    //gevonden varianten die gelijk zijn aan de dictionary
+    let foundVariants: ProductVariant[] = [];   
+  
+
+  
+    for( let variantName in this.optionsDict){ 
+        for(const variant of product.variants) { 
+            if(variant.name == variantName){  
+                variant.foundOptions  = []; 
+                variant.foundOptions.push(this.optionsDict[variantName]);
+                foundVariants.push(variant);  
+             }
+        }   
+
+    }     
+
+
+    console.log(foundVariants);
+    product.foundVariants = foundVariants;  
+
+    console.log(product);
+
+    this.cartService.addProductToCart(product)  
+    
+
   }
 
 

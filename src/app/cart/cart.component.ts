@@ -72,6 +72,10 @@ export class CartComponent implements OnInit {
 
     this.products_in_cart.forEach( product =>{ 
       product_ids.push(product.id);
+    })   
+
+    this.products_in_cart.forEach( product =>{ 
+      product_ids.push(product.id);
     })  
 
  

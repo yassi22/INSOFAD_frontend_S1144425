@@ -15,12 +15,14 @@ const ordersKey: string = "user-orders";
 export class CartService {
   private productsInCart: Product[] = []; 
   public $productInCart: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>([]); 
-  
+
   public $productVariantInCart: BehaviorSubject<ProductVariant[]> = new BehaviorSubject<ProductVariant[]>([]);  
   public $optionsInCart : BehaviorSubject<Options[]> = new BehaviorSubject<Options[]>([]); 
 
   private userEmailKey: string = 'user-email';
-  private productsInCartSubject = new Subject<Product[]>();
+  private productsInCartSubject = new Subject<Product[]>(); 
+
+  
   
   
   constructor() {
