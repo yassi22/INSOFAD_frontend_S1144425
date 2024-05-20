@@ -3,6 +3,8 @@ import { Injectable, OnInit } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 
 import { Product } from '../models/product.model';
+import { ProductVariant } from '../models/productvariant.model'; 
+import { Options } from '../models/options.model';
 
 const localStorageKey: string = "products-in-cart";
 const ordersKey: string = "user-orders";
@@ -11,8 +13,12 @@ const ordersKey: string = "user-orders";
   providedIn: 'root'
 })
 export class CartService {
-  private productsInCart: Product[] = [];
-  public $productInCart: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>([]);
+  private productsInCart: Product[] = []; 
+  public $productInCart: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>([]); 
+  
+  public $productVariantInCart: BehaviorSubject<ProductVariant[]> = new BehaviorSubject<ProductVariant[]>([]);  
+  public $optionsInCart : BehaviorSubject<Options[]> = new BehaviorSubject<Options[]>([]); 
+
   private userEmailKey: string = 'user-email';
   private productsInCartSubject = new Subject<Product[]>();
   
@@ -36,7 +42,7 @@ export class CartService {
     return this.productsInCart.slice();
   } 
 
-  
+
   public getTotalPrice(): number {
     let subtotal = this.productsInCart.reduce((acc, product) => acc + product.price, 0);
     if (subtotal > 0) {
