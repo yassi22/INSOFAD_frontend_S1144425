@@ -34,7 +34,9 @@ export class CartService {
 
   public allProductsInCart(): Product[] {
     return this.productsInCart.slice();
-  }
+  } 
+
+  
   public getTotalPrice(): number {
     let subtotal = this.productsInCart.reduce((acc, product) => acc + product.price, 0);
     if (subtotal > 0) {

@@ -61,6 +61,7 @@ export class ProductDetailComponent {
       let options_cost = productoptions.added_price;   
       
       // de default prijs van product wordt opgeteld met de aangeklikte option. 
+      
       this.product.price =  this.defaultprice + options_cost; 
 
 

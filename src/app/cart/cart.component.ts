@@ -67,11 +67,19 @@ export class CartComponent implements OnInit {
     this.products_in_cart = this.cartService.allProductsInCart();  
 
     let product_ids : number[] = []; 
+    let productVariantId : number[] = []; 
+    let optionsId : number[] = []; 
+
     this.products_in_cart.forEach( product =>{ 
       product_ids.push(product.id);
-    })
+    })  
 
-    const order =  new Order(product_ids, user_email);   
+ 
+    // this.products_in_cart.forEach( product =>{ 
+    //   product_ids.push(product.id);
+    // })
+
+    const order =  new Order(product_ids, productVariantId , optionsId, user_email);   
     this.productService.sendOrders(order); 
     this.cartService.clearCart();
     
