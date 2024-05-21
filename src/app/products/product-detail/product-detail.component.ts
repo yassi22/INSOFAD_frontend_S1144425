@@ -20,6 +20,8 @@ export class ProductDetailComponent {
   public selectedProductVariant: [ProductVariant | null , number | null ] = [null, null];  
   public defaultprice: number = 0;   
 
+  public copyProduct: Product; 
+    
   public optionsDict: {[key: string]: Options} = {};   
   
   
@@ -47,7 +49,8 @@ export class ProductDetailComponent {
         this.defaultprice = product.price; 
         console.log("dit is een update van de prijs" + this.defaultprice);
       } 
-  
+      this.copyProduct = structuredClone(product);
+
       console.log(product.price);
     });  
     
@@ -91,29 +94,22 @@ export class ProductDetailComponent {
     console.log(this.optionsDict);
     console.log(product.variants); 
 
-    //gevonden varianten die gelijk zijn aan de dictionary
-    let foundVariants: ProductVariant[] = [];   
-  
 
-  
     for( let variantName in this.optionsDict){ 
-        for(const variant of product.variants) { 
+        for(const variant of this.copyProduct.variants) { 
             if(variant.name == variantName){  
-                variant.foundOptions  = []; 
-                variant.foundOptions.push(this.optionsDict[variantName]);
-                foundVariants.push(variant);  
+                variant.options  = []; 
+                variant.options.push(this.optionsDict[variantName]); 
+           
              }
         }   
 
-    }     
+    }       
+ 
+    console.log(product); 
+    console.log(this.copyProduct);
 
-
-    console.log(foundVariants);
-    product.foundVariants = foundVariants;  
-
-    console.log(product);
-
-    this.cartService.addProductToCart(product)  
+    this.cartService.addProductToCart(this.copyProduct)  
     
 
   }

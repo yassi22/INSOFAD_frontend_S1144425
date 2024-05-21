@@ -67,55 +67,17 @@ export class CartComponent implements OnInit {
     this.products_in_cart = this.cartService.allProductsInCart();  
 
     let product_ids : number[] = []; 
-    let productVariantId : number[] = []; 
-    let optionsId : number[] = []; 
 
     this.products_in_cart.forEach( product =>{ 
       product_ids.push(product.id);
-    })   
-
-    this.products_in_cart.forEach( product =>{ 
-      product_ids.push(product.id);
-    })  
-
- 
-    // this.products_in_cart.forEach( product =>{ 
-    //   product_ids.push(product.id);
-    // })
+    })    
 
     const order =  new Order(this.products_in_cart, user_email);   
     this.productService.sendOrders(order); 
     this.cartService.clearCart();
     
-    // if(order == null){ 
-    //   this.products_in_cart = this.cartService.allProductsInCart();  
-    // } else { 
-    //   this.products_in_cart = [];
-    //   this.saveProductsAndNotifyChange();
-    // }
-  
+
   } 
-
-
-
-
-  // placeOrder() {
-  //   this.calculateTotalPrice();
-  
-  //   if (this.totalPrice > 0 && this.totalPrice > 0) {
-  //     console.log('Bestelling geplaatst met e-mail:', this.orderEmail);
-  //     alert(`Bestelling succesvol geplaatst!\nTotaal: €${(this.totalPrice + this.shippingCosts).toFixed(2)}`);
-  //     this.clearCart();
-  //     this.router.navigate(['/order']);
-  //   } else {
-  //     alert('Voeg eerst producten toe aan je winkelwagen.');
-  //   }
-  // }  
-
-
-
-
-
 
   
 

@@ -8,15 +8,15 @@ export class Product {
   public name: string;
   public description: string;
   public price: number;
-  public category: string;
+  public category: number;
   public fitting: string;
   public imageUrl: string;
   public quantity: number;
+  public durability: string; 
   public variants: ProductVariant[]; 
-  public foundVariants: ProductVariant[]; 
 
   constructor(id: number, name: string, description: string, price: number, 
-    category: string, fitting: string, imageUrl:string, quantity:number = 1) {
+    category: number, fitting: string, imageUrl:string, quantity:number = 1, durability: string)  {
       this.id = id;
       this.name = name;
       this.description = description;
@@ -24,7 +24,8 @@ export class Product {
       this.category = category;
       this.fitting = fitting;
       this.imageUrl = imageUrl; 
-      this.quantity = quantity;
-    }
+      this.quantity = quantity; 
+      this.durability = durability; 
+    } 
     
 }

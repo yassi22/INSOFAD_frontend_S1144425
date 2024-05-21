@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
 import { environment } from '../../environments/environment';
 import { Product } from '../models/product.model'; 
 import { Order } from '../models/order.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root' 
 })
 export class ProductsService {
 
@@ -34,11 +32,20 @@ export class ProductsService {
 
   public updateProductByIndex(id: number, product: Product): Observable<Product> {
     return this.http.put<Product>(`${this.baseUrl}/${id}`, product);
-  } 
+  }  
 
-  public sendOrders(request: Order): void{ 
+
+
+  public sendOrders(request: Order): void{  
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      }), 
+    }; 
+ 
     this.http
-    .post<string>(this._orderEndpoint, request) 
+    .post<Order>(this._orderEndpoint, JSON.stringify(request), httpOptions ) 
     .subscribe(
 
       res=>{
