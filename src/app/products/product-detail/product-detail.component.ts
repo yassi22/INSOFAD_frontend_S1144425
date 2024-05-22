@@ -49,7 +49,10 @@ export class ProductDetailComponent {
         this.defaultprice = product.price; 
         console.log("dit is een update van de prijs" + this.defaultprice);
       } 
-      this.copyProduct = structuredClone(product);
+      this.copyProduct = structuredClone(product); 
+      this.copyProduct.variants.forEach((variant) => {
+        variant.options = []; 
+      }); 
 
       console.log(product.price);
     });  
@@ -94,7 +97,7 @@ export class ProductDetailComponent {
     for( let variantName in this.optionsDict){ 
         for(const variant of this.copyProduct.variants) { 
             if(variant.name == variantName){  
-                variant.options  = []; 
+                variant.options = []; 
                 variant.options.push(this.optionsDict[variantName]); 
            
              }

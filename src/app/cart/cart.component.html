@@ -6,7 +6,6 @@
       </div> 
 
       <div *ngFor="let product of products_in_cart; let i = index"> 
-        <div  *ngFor="let variants of selectedProductVariant; let i = index">
         <div class="card rounded-3 mb-4">
           <div class="card-body p-4">
             <div class="row d-flex justify-content-between align-items-center">
@@ -16,16 +15,17 @@
               </div>
               <div class="col-md-3 col-lg-3 col-xl-3">
                 <p class="lead fw-normal mb-2" aria-label="Product name">{{product.name}}</p>
-              </div> 
-              <div class="col-md-3 col-lg-3 col-xl-3">
-                <p class="lead fw-normal mb-2">{{product.variants}}</p>
               </div>  
-              <div class="col-md-3 col-lg-3 col-xl-3">
-                <p class="lead fw-normal mb-2">{{"Product variant options"}}</p>
-              </div> 
-              <div class="col-md-3 col-lg-3 col-xl-3">
-                <p class="lead fw-normal mb-2"> </p>
-              </div>
+                 
+              <div class="col-md-3 col-lg-3 col-xl-3"> 
+                <div *ngFor="let variant of product.variants; let i = index">  
+                  <div *ngFor="let option of variant.options; let i = index">  
+                    <p class="lead fw-normal mb-2">{{variant.name}} : {{option.name}}</p>  
+                  </div>  
+                </div>
+
+              </div>     
+ 
               <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
                 <h5 class="mb-0" aria-label="Product price">{{calculateProductPrice(product)| currency }}</h5>
               </div>
@@ -35,7 +35,6 @@
             </div>
           </div>
         </div>
-      </div> 
     </div>
   
       <div class="d-flex justify-content-end mt-2">
