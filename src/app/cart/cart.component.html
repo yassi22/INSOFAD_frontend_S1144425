@@ -2,7 +2,7 @@
   <div class="row d-flex justify-content-center">
     <div class="col-xl-11">
       <div class="d-flex justify-content-between align-items-center mb-4">
-        <h3 class="fw-normal mb-0 text-black" aria-label="Shopping Cart">Shopping Cart</h3>
+        <h3 class="fw-normal mb-0 text-black" aria-label="Winkelmand">Shopping Cart</h3>
       </div> 
 
       <div *ngFor="let product of products_in_cart; let i = index"> 
@@ -11,26 +11,26 @@
             <div class="row d-flex justify-content-between align-items-center">
               <div class="col-md-2 col-lg-2 col-xl-2">
                 <img src="{{product}}"
-                  class="img-fluid rounded-3" aria-label="Product image" alt="{{product.name}}">
+                  class="img-fluid rounded-3" aria-label="Product plaatje" alt="{{product.name}}">
               </div>
               <div class="col-md-3 col-lg-3 col-xl-3">
-                <p class="lead fw-normal mb-2" aria-label="Product name">{{product.name}}</p>
+                <p class="lead fw-normal mb-2" aria-label="Product naam">{{product.name}}</p>
               </div>  
                  
               <div class="col-md-3 col-lg-3 col-xl-3"> 
                 <div *ngFor="let variant of product.variants; let i = index">  
                   <div *ngFor="let option of variant.options; let i = index">  
-                    <p class="lead fw-normal mb-2">{{variant.name}} : {{option.name}}</p>  
+                    <p class="lead fw-normal mb-2" aria-label="Variant naam en optie naam">{{variant.name}} : {{option.name}}</p>  
                   </div>  
                 </div>
 
               </div>     
  
               <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                <h5 class="mb-0" aria-label="Product price">{{calculateProductPrice(product)| currency }}</h5>
+                <h5 class="mb-0" aria-label="Product prijs">{{calculateProductPrice(product)| currency }}</h5>
               </div>
               <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                <a (click)="removeProductFromCart(i)" aria-label="Delete product from cart"class="text-danger">Delete</a>
+                <a (click)="removeProductFromCart(i)" aria-label="Verwijder product uit winkelmand"class="text-danger">Delete</a>
               </div>
             </div>
           </div>
@@ -38,17 +38,17 @@
     </div>
   
       <div class="d-flex justify-content-end mt-2">
-        <h5 class="fw-normal mb-0 text-black" aria-label="Shipping cost">Shipping: {{ shippingCosts | currency:'EUR' }}</h5>
+        <h5 class="fw-normal mb-0 text-black" aria-label="Verzendkosten">Shipping: {{ shippingCosts | currency:'EUR' }}</h5>
       </div>
       <div class="d-flex justify-content-end mt-2">
-        <h4 class="fw-bold mb-0 text-black">Total: {{ (products_in_cart.length > 0 ? totalPrice : 0) | currency:'EUR' }}</h4>
+        <h4 class="fw-bold mb-0 text-black" aria-label="Totale kosten ">Total: {{ (products_in_cart.length > 0 ? totalPrice : 0) | currency:'EUR' }}</h4>
       </div>
       <div class="order-form mt-5">
         <form (submit)="sendOrders()">
           <div class="form-group">
           </div>
           <div class="d-flex justify-content-end mt-4">
-            <button type="submit" class="btn btn-primary">Bestelling plaatsen</button>
+            <button type="submit" class="btn btn-primary" aria-label="Bestelling plaatsen">Bestelling plaatsen</button>
           </div>
         </form>
       </div>
