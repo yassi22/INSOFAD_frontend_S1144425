@@ -30,7 +30,7 @@ export class CartComponent implements OnInit {
   quantity: number = 1;  
 
   
-  public selectedProductVariant: [ProductVariant | null , number | null ] = [null, null];  
+  public selectedProductVariant: [ProductVariant | null , number | null ] = [null, null];   
   public optionsDict: {[key: string]: Options} = {};    
 
    
@@ -59,10 +59,27 @@ export class CartComponent implements OnInit {
   calculateTotalPrice() {
     this.totalPrice = 0;
     if (this.products_in_cart.length > 0) {
-    const productsTotal = this.products_in_cart.reduce((acc, product) => acc + product.price, 0);
+    const productsTotal = this.products_in_cart.reduce((acc, product) => acc + this.calculateProductPrice(product), 0);
     this.totalPrice = productsTotal + this.shippingCosts;
     }
+  } 
+
+  calculateProductPrice(product:Product): number{   
+
+
+    let resultPrice = product.price;  
+    product.variants.forEach((variant) => 
+      variant.options.forEach((option) => 
+        resultPrice += option.added_price 
+      )
+    )  
+    
+    console.log(resultPrice);
+    return resultPrice;
+ 
   }
+
+
 
   public removeProductFromCart(product_index: number) {
     this.cartService.removeProductFromCart(product_index);
@@ -85,11 +102,11 @@ export class CartComponent implements OnInit {
       product_ids.push(product.id);
     })    
 
-    const order =  new Order(this.products_in_cart, user_email);   
+    const order =  new Order(this.products_in_cart, user_email);    
+    console.log(order);
     this.productService.sendOrders(order); 
     this.cartService.clearCart();
-    
-
+  
   } 
 
   
