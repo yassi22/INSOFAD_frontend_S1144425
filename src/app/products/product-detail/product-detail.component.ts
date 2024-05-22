@@ -85,11 +85,7 @@ export class ProductDetailComponent {
 
   } 
 
-  public removeFromPrice(additional_cost: number){
-    this.product.price -= additional_cost;  
-  }
-
-
+ 
   public buyProduct(product: Product) {
     console.log(this.optionsDict);
     console.log(product.variants); 

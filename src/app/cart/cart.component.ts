@@ -8,7 +8,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'; 
 import { ProductsService } from '../services/products.service'; 
 import { TokenService } from '../auth/token.service'; 
-import { Order } from '../models/order.model';
+import { Order } from '../models/order.model'; 
+import { ProductVariant } from '../models/productvariant.model';
+import { Options } from '../models/options.model';
+
 
 @Component({
   selector: 'app-cart',
@@ -16,13 +19,18 @@ import { Order } from '../models/order.model';
   imports: [CommonModule, CurrencyPipe, FormsModule],
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss'] 
-})
+}) 
+
 export class CartComponent implements OnInit {
   public products_in_cart: Product[] = [];
   public shippingCosts: number = 4.95;
   public totalPrice: number = 0;
   public orderEmail: string = ''; 
-  quantity: number = 1; 
+  quantity: number = 1;  
+
+  
+  public selectedProductVariant: [ProductVariant | null , number | null ] = [null, null];  
+  public optionsDict: {[key: string]: Options} = {};   
 
   public userIsLoggedIn: boolean = false;
 
@@ -31,7 +39,7 @@ export class CartComponent implements OnInit {
     private http: HttpClient, 
     private router: Router, 
     private productService: ProductsService, 
-    private tokenService: TokenService 
+    private tokenService: TokenService
   ) {}
 
   ngOnInit() {
