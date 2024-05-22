@@ -10,7 +10,8 @@ import { ProductsService } from '../services/products.service';
 import { TokenService } from '../auth/token.service'; 
 import { Order } from '../models/order.model'; 
 import { ProductVariant } from '../models/productvariant.model';
-import { Options } from '../models/options.model';
+import { Options } from '../models/options.model'; 
+import { ProductDetailComponent } from '../products/product-detail/product-detail.component';
 
 
 @Component({
@@ -30,7 +31,9 @@ export class CartComponent implements OnInit {
 
   
   public selectedProductVariant: [ProductVariant | null , number | null ] = [null, null];  
-  public optionsDict: {[key: string]: Options} = {};   
+  public optionsDict: {[key: string]: Options} = {};    
+
+   
 
   public userIsLoggedIn: boolean = false;
 
@@ -46,7 +49,9 @@ export class CartComponent implements OnInit {
     this.products_in_cart = this.cartService.allProductsInCart() as Product [];
     this.cartService.$productInCart.subscribe((products: Product[]) => {
       this.products_in_cart = products;
-      this.calculateTotalPrice(); 
+      this.calculateTotalPrice();  
+      this.selectedProductVariant; 
+      this.optionsDict; 
     });
     this.calculateTotalPrice(); 
   }
@@ -102,8 +107,7 @@ export class CartComponent implements OnInit {
     if (quantity >= 0) {
       this.cartService.updateProductQuantity(index, quantity);
     }
-  }
-  
-  
+  } 
+
 
 }
