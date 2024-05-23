@@ -4,7 +4,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Product } from '../../models/product.model'; 
 import { ProductsService } from '../../services/products.service'; 
 import { ProductVariant } from '../../models/productvariant.model'; 
-import { ElementRef } from '@angular/core';
+import { ElementRef } from '@angular/core';  
+import { DeleteVariantOptions } from '../../models/deletevrariantoptions.model'; 
+
 
 @Component({
   selector: 'app-adminpaneldetail',
@@ -16,7 +18,7 @@ import { ElementRef } from '@angular/core';
 export class AdminpaneldetailComponent {  
   private productId: number;  
   private selectedOptionsList:number[] = [];  
-  private selectedVariantsList:number[] = []; 
+  private selectedVariantsList:number[] = [];  
 
   @Input() public product!: Product;
 
@@ -30,17 +32,8 @@ export class AdminpaneldetailComponent {
       this.productId = params['id'];
     });
 
-    this.productsService
-    .getProductByIndex(this.productId)
-    .subscribe((product: Product) => {
-      this.product = product; 
-      this.product.price = product.price;   
+    this.refreshProduct();
   
-      console.log(product.price);
-    });  
-    
-   
-
   }    
 
   toggleDiv(id:number){   
@@ -67,7 +60,7 @@ export class AdminpaneldetailComponent {
     } else { 
       this.selectedVariantsList.push(id); 
       
-      
+
     }  
 
     console.log(this.selectedVariantsList); 
@@ -90,7 +83,33 @@ export class AdminpaneldetailComponent {
     console.log(this.selectedOptionsList); 
  
   }
- 
+  
+  buildProductVariantOptionList():DeleteVariantOptions{  
+      return new DeleteVariantOptions(this.selectedVariantsList, this.selectedOptionsList);  
+       
+  } 
+
+  postDeleteVariantOptions(){ 
+    this.productsService.sendDeleteProductVariantOption(this.buildProductVariantOptionList()).subscribe(() => { 
+
+      this.refreshProduct(); 
+        
+    });  
+    
+    console.log("De functie werkt");
+  
+  } 
+
+  refreshProduct(){ 
+    this.productsService
+    .getProductByIndex(this.productId)
+    .subscribe((product: Product) => {
+      this.product = product; 
+      this.product.price = product.price;   
+  
+      console.log(product.price);
+    });   
+  }
 
 
 } 

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Product } from '../models/product.model'; 
 import { Order } from '../models/order.model';
+import { DeleteVariantOptions } from '../models/deletevrariantoptions.model';
 
 @Injectable({
   providedIn: 'root' 
@@ -34,8 +35,6 @@ export class ProductsService {
     return this.http.put<Product>(`${this.baseUrl}/${id}`, product);
   }  
 
-
-
   public sendOrders(request: Order): void{  
 
     const httpOptions = {
@@ -58,7 +57,12 @@ export class ProductsService {
  
       });
      
-}
+  }   
+
+  public sendDeleteProductVariantOption(deleteVariantOptions:DeleteVariantOptions){ 
+      return this.http.post<DeleteVariantOptions>(this.baseUrl + "/variants-options", deleteVariantOptions);
+  }
+ 
 
 
 }
