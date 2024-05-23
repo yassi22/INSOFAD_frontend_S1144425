@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 
 import { CartService } from '../services/cart.service';
 import { Product } from '../models/product.model';
@@ -21,7 +21,10 @@ export class ProductsComponent {
     this.productsService
       .getProducts()
       .subscribe((products: Product[]) => {
-        this.loadingProducts = false;
+        this.loadingProducts = false; 
+        //producten worden gesorteerd op product id van laag naar hoog.
+        products.sort((a,b) => a.id - b.id);  
+        console.log(products); 
         this.products = products;
       });
   }
