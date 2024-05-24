@@ -18,7 +18,9 @@ export class ProductDetailComponent {
 
   private productId: number; 
   public selectedProductVariant: [ProductVariant | null , number | null ] = [null, null];  
-  public defaultprice: number = 0;   
+  public defaultprice: number = 0;    
+
+
 
   public copyProduct: Product; 
     
@@ -93,13 +95,15 @@ export class ProductDetailComponent {
     console.log(this.optionsDict);
     console.log(product.variants); 
 
+    let productQuantity = product.quantity; 
 
-    for( let variantName in this.optionsDict){ 
+    if(productQuantity > 0 ){
+      for( let variantName in this.optionsDict){ 
         for(const variant of this.copyProduct.variants) { 
-            if(variant.name == variantName){  
+            if(variant.name == variantName){   
                 variant.options = []; 
                 variant.options.push(this.optionsDict[variantName]); 
-           
+              
              }
         }   
 
@@ -110,6 +114,10 @@ export class ProductDetailComponent {
 
     this.cartService.addProductToCart(this.copyProduct)  
     
+    } else { 
+      alert("Product is out of stock");
+    }
+ 
 
   }
 
