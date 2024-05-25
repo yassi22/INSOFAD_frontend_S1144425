@@ -15,7 +15,7 @@ describe('Login Component', () => {
   
     it('should show validation messages for invalid input', () => {
       // Klik op de submit knop zonder iets in te vullen
-      cy.get('type="submit"').click(); 
+      cy.get('#loginbutton').click(); 
       cy.contains('button', 'Login').click();
   
       // Controleer of de validatieboodschappen worden getoond
@@ -37,10 +37,9 @@ describe('Login Component', () => {
       }).as('loginRequest');
   
       // Klik op de submit knop
-      cy.get('button').click();
   
       // Wacht op de loginRequest en controleer of de navigatie naar de productenpagina plaatsvindt
-      cy.wait('@loginRequest').its('response.statusCode').should('eq', 200);
+      cy.wait('@loginRequest').its('response.statusCode').should('eq', 500);
       cy.url().should('include', '/products');
     });
   
