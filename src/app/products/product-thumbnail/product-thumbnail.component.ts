@@ -11,7 +11,5 @@ export class ProductThumbnailComponent {
   @Input() public product!: Product;
   @Output() public onBuyProduct: EventEmitter<Product> = new EventEmitter<Product>();
 
-  public buyProduct(product: Product) {
-    this.onBuyProduct.emit(product);
-  }
+ 
 }
