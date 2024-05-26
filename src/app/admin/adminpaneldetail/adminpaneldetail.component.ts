@@ -72,8 +72,6 @@ export class AdminpaneldetailComponent {
     if(this.selectedOptionsList.includes(id)){    
 
       this.selectedOptionsList = this.selectedOptionsList.filter(setid => setid !== id); 
-
-      // this.selectedOptionsList.slice(this.selectedOptionsList.indexOf(id), 1);  
         
     } else { 
       this.selectedOptionsList.push(id); 

@@ -11,17 +11,6 @@ export class Order {
     } 
    
 
-
-    // public productIds: number[];  
-    // public productVariantId: number[]; 
-    // public optionsId: number[]; 
-
-    // email: string; 
-
-    // constructor(productIds:number[], productVariantId: number[], optionsId: number[] , email:string){ 
-    //     this.productIds = productIds; 
-    //     this.email = email;
-    // } 
    
     
 }

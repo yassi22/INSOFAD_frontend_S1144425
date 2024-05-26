@@ -22,8 +22,5 @@ export class OrderService{
       }
  
 
-        // public getOrderHistory() {
-    //     return this.http.get<any[]>('api/order-history')
-    // } 
 
 } 

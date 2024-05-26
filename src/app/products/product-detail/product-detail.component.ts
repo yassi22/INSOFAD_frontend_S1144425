@@ -66,8 +66,6 @@ export class ProductDetailComponent {
 
   public addToPrice(additional_cost: number, productVariant:ProductVariant, productOptions:Options){    
 
-
-      // const productOptionsList[] =  productOptions; 
       
       let options_cost = productOptions.added_price;    
       

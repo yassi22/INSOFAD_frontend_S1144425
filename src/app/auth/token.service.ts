@@ -92,7 +92,7 @@ export class TokenService {
       return userRole; 
     } else {  
       //error message toevoegen
-      return  "er is iets miss gegaan"; 
+      return  "er is iets mis gegaan"; 
     }
 
   }

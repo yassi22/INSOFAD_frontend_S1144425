@@ -33,16 +33,6 @@ export class OrderComponent implements OnInit{
     });
   }
 
-  // public loadOrderHistory(): void{
-  //   this.orderService.getOrderHistory().subscribe(
-  //     (orderHistory) => {
-  //       this.orders = orderHistory;
-  //     },
-  //     (error) => {
-  //       console.error('Error fetching order history', error);
-  //     }
-  //   )
-  // } 
 
 
   }
