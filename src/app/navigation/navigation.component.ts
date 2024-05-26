@@ -31,7 +31,7 @@ export class NavigationComponent implements OnInit {
       this.amountOfProducts = products.length;
     })
     this.checkLoginState();
-    console.log("dit is een test plek ");
+
     this.checkRole();
 }
   public onLogout(): void{ 
@@ -63,22 +63,6 @@ public checkRole(): void {
   })
 
 
-  // const getRole = this.tokenService.getRole();  
-  // console.log("dit is de role van de gebruiker: " + getRole);  
-  // if (getRole == "ROLE_ADMIN") {
-    
-  //   this.hasAdminRole = true; 
-
-  // } else { 
-  //   this.hasAdminRole = false; 
-  // } 
-
-   
-  // // if(getRole == "ROLE_ADMIN"){ 
-  // //     this.hasAdminRole = true;
-  // // } else { 
-  // //    this.hasAdminRole = false; 
-  // // }
  
 }
 

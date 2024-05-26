@@ -39,14 +39,14 @@ export class AdminpaneldetailComponent {
   toggleDiv(id:number){   
    let stringid = id.toString();  
      const element = document.getElementById(stringid);  
-     console.log(element) 
+    
      const checkBoxes = element?.querySelectorAll("input[type='checkbox']");
-     console.log(checkBoxes); 
+    
 
     checkBoxes?.forEach((checkbox: Node) => {
     
       if(checkbox instanceof HTMLInputElement){ 
-        console.log(checkbox.disabled); 
+      
          checkbox.disabled = !checkbox.disabled;   
       }
      
@@ -63,7 +63,7 @@ export class AdminpaneldetailComponent {
 
     }  
 
-    console.log(this.selectedVariantsList); 
+  
  
   } 
 
@@ -80,7 +80,7 @@ export class AdminpaneldetailComponent {
       
     } 
 
-    console.log(this.selectedOptionsList); 
+ 
  
   }
   
@@ -96,7 +96,7 @@ export class AdminpaneldetailComponent {
         
     });  
     
-    console.log("De functie werkt");
+   
   
   } 
 
@@ -107,7 +107,7 @@ export class AdminpaneldetailComponent {
       this.product = product; 
       this.product.price = product.price;   
   
-      console.log(product.price);
+   
     });   
   }
 

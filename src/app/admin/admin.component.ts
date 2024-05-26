@@ -27,9 +27,7 @@ export class AdminComponent {
       .getProducts()
       .subscribe((products: Product[]) => {
         this.loadingProducts = false;  
-        console.log(products); 
         this.products = products; 
-        console.log("testing");
       });
   }  
 

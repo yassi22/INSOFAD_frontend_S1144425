@@ -24,7 +24,6 @@ export class ProductsComponent {
         this.loadingProducts = false; 
         //producten worden gesorteerd op product id van laag naar hoog.
         products.sort((a,b) => a.id - b.id);  
-        console.log(products); 
         this.products = products;
       });
   }

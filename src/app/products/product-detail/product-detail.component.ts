@@ -49,14 +49,13 @@ export class ProductDetailComponent {
       this.product.price = product.price;   
       if(this.defaultprice == 0 ){ 
         this.defaultprice = product.price; 
-        console.log("dit is een update van de prijs" + this.defaultprice);
       } 
       this.copyProduct = structuredClone(product); 
       this.copyProduct.variants.forEach((variant) => {
         variant.options = []; 
       }); 
 
-      console.log(product.price);
+     
     });  
     
    
@@ -66,23 +65,20 @@ export class ProductDetailComponent {
 
 
   public addToPrice(additional_cost: number, productVariant:ProductVariant, productOptions:Options){    
-      console.log(productVariant); 
-      console.log(productOptions);     
-      console.log(this.defaultprice);  
+
 
       // const productOptionsList[] =  productOptions; 
       
       let options_cost = productOptions.added_price;    
       
       this.optionsDict[productVariant.name] = productOptions  
-      console.log(this.optionsDict);
-
+    
       let total_additionalcost = 0; 
 
     
       for( let optionKey in this.optionsDict){ 
         let optionPrice = this.optionsDict[optionKey].added_price;   
-        console.log(optionPrice);
+  
         total_additionalcost += optionPrice; 
       }   
 
@@ -92,8 +88,7 @@ export class ProductDetailComponent {
 
  
   public buyProduct(product: Product) {
-    console.log(this.optionsDict);
-    console.log(product.variants); 
+
 
     let productQuantity = product.quantity; 
 
@@ -109,8 +104,7 @@ export class ProductDetailComponent {
 
     }       
  
-    console.log(product); 
-    console.log(this.copyProduct);
+
 
     this.cartService.addProductToCart(this.copyProduct)  
     

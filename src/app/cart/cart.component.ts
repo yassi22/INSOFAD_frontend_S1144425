@@ -74,7 +74,7 @@ export class CartComponent implements OnInit {
       )
     )  
     
-    console.log(resultPrice);
+
     return resultPrice;
  
   }
@@ -103,7 +103,7 @@ export class CartComponent implements OnInit {
     })    
 
     const order =  new Order(this.products_in_cart, user_email);    
-    console.log(order);
+
     this.productService.sendOrders(order); 
     this.cartService.clearCart();
   
