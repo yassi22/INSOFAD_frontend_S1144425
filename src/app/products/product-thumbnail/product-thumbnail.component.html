@@ -1,6 +1,6 @@
 <div class="d-flex">
   <div class="p-2 w-100">
-    <img src="assets/images/JADPROD.jpg" aria-label="Product plaatje" alt="{{ product.name }}">
+    <img src={{product.imageUrl}} class="img-fluid rounded-3" aria-label="Product plaatje" alt="{{ product.name }}">
     <h5 aria-label="Product naam">{{ product.name }}</h5>
     <p aria-label="Product prijs">{{ product.price | currency }}</p>
     <p>
