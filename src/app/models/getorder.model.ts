@@ -3,6 +3,10 @@ export class GetOrder {
     public datum: Date; 
     public orderTitle: string;
     public orderPrice: number;
+    public orderProducts:[] = [];
+
     
+  
+
   } 
   

@@ -17,7 +17,8 @@ import { Order } from '../models/order.model';
 export class OrderComponent implements OnInit{
   public orders: GetOrder[] = new Array<GetOrder>();
   public loadingOrders: boolean = true;
-  public user_email : String;  
+  public user_email : String;   
+
 
  
 
@@ -29,9 +30,13 @@ export class OrderComponent implements OnInit{
     .getOrders()
     .subscribe((orders: GetOrder[]) => {
       this.loadingOrders = false;
-      this.orders = orders;
+      this.orders = orders; 
+      console.log(orders); 
+
     });
   }
+
+   
 
 
 
