@@ -1,13 +1,10 @@
-<p>adminpaneldetail works!</p>
-
-  <div class="row justify-content-md-center"> 
+<script src="adminpaneldetail.component.spec.ts"></script>
+<div class="row justify-content-md-center">
         @if (product) {
       <div class="col col-lg-6">
         <p class="text-center mt-4 fs-1 fw-bold" aria-label="Product naam"> {{product.name}}</p>  
         <img src={{product.imageUrl}} class="img-fluid rounded-3" aria-label="Product plaatje" alt="Picture clothing"/>  
         <p class="text-left mt-2 fs-5 fw-bold" aria-label="Product Prijs"> Prijs: {{product.price}}</p> 
-        <!-- <button (click)="buyProduct(product)" *ngIf="languageService.language == 'NL'" class="btn btn-primary float-right text-right">Kopen</button>  
-        <button (click)="buyProduct(product)" *ngIf="languageService.language == 'EN'" class="btn btn-primary float-right text-right">Buy</button>   -->
 
         <h4 class="text-right mt-5 fw-bold" aria-label="Product beschrijving">Beschrijving: </h4> 
  
@@ -51,7 +48,7 @@
             <br><br>
       </div> 
     } @else { 
-        <div aria-label="Product niet gevonden">Product niet gevonden</div>
+        <div aria-label="Product niet gevonden">Product not found</div>
     } 
     </div>   
   
