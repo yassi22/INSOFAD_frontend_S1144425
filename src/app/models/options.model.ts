@@ -1,7 +1,7 @@
 // import { Category } from "./category.model";
 
 export class Options {
-    public id: number;
+    public id: number | undefined;
     public name: string;
     public added_price: number;
   
@@ -10,6 +10,8 @@ export class Options {
         this.name = name;
         this.added_price = added_price;
       }
-      
-  }
+
+
+
+}
   

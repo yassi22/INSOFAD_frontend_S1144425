@@ -5,6 +5,8 @@ import { environment } from '../../environments/environment';
 import { Product } from '../models/product.model'; 
 import { Order } from '../models/order.model';
 import { DeleteVariantOptions } from '../models/deletevrariantoptions.model';
+import {ProductVariant} from "../models/productvariant.model";
+import {Options} from "../models/options.model";
 
 @Injectable({
   providedIn: 'root' 
@@ -60,9 +62,38 @@ export class ProductsService {
   }   
 
   public sendDeleteProductVariantOption(deleteVariantOptions:DeleteVariantOptions){ 
-      return this.http.post<DeleteVariantOptions>(this.baseUrl + "/variants-options", deleteVariantOptions);
+      return this.http.post<DeleteVariantOptions>(`${this.baseUrl}/deleteVariants`, deleteVariantOptions);
   }
- 
+
+  // addVariantToProduct(productId: number, variant: ProductVariant, option:Options): Observable<Product> {
+  //   return this.http.post<Product>(`${this.baseUrl}/${productId}/addVariants`, JSON.stringify(variant),  option);
+  // }
+
+
+  public addVariantToProduct(request: Product): void{
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+    };
+
+    this.http
+        .post<Product>( `${this.baseUrl}/${request.id}/addVariants`, JSON.stringify(request), httpOptions )
+        .subscribe(
+
+            res=>{
+
+              console.log(res);
+
+            },     err=>{
+
+              console.log(err);
+
+            });
+
+  }
+
 
 
 }
