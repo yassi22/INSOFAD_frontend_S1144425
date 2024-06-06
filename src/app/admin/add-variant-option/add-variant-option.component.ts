@@ -60,8 +60,10 @@ export class AddVariantOptionComponent {
 
         let optiondId:number = 0 ;
 
+        let variantId:number = 0;
+
         optionGroupList?.forEach((element:Node) => {
-            let elementChildNodes = element.childNodes;
+            let elementChildNodes =  element.childNodes;
 
             if(elementChildNodes.length > 0){
 
@@ -86,13 +88,20 @@ export class AddVariantOptionComponent {
                 this.optionList.push(newOption);
 
             }
-
-
         });
+
+       const newVariant = new ProductVariant(variantId, variantName, variantDescription, this.optionList);
+
+       this.product.variants.push(newVariant);
+
 
         console.log(this.product);
         console.log(this.optionList);
+
+
     }
+
+
 
     addOption(){
          this.optionAmount.push(1);

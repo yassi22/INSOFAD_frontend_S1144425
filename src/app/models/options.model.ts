@@ -1,7 +1,7 @@
 // import { Category } from "./category.model";
 
 export class Options {
-    public id: number | undefined;
+    public id: number;
     public name: string;
     public added_price: number;
   
