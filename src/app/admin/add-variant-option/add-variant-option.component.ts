@@ -26,7 +26,7 @@ export class AddVariantOptionComponent {
     @Input() public product!: Product;
     private productId: number;
    private  optionList:Options[] = [];
-    optionAmount:number[] = [1,0];
+    optionAmount:number[] = [1,2];
 
 
     constructor(private activatedRoute: ActivatedRoute, private productService: ProductsService, private router: Router) {
@@ -62,6 +62,15 @@ export class AddVariantOptionComponent {
 
         let variantId:number = 0;
 
+        for( let variant of this.product.variants){
+            if(variant.id > variantId){
+                variantId = variant.id;
+            }
+
+        }
+        variantId += 1;
+
+
         optionGroupList?.forEach((element:Node) => {
             let elementChildNodes =  element.childNodes;
 
@@ -81,16 +90,30 @@ export class AddVariantOptionComponent {
                 // @ts-ignore
                 let optionPrice:number = optionPriceDiv[1].value;
 
-                const newOption = new Options(optiondId, optionName,optionPrice);
+                // const newOption = new Options(optiondId, optionName,optionPrice);
 
                 optiondId+=1;
+
+                const newOption = {
+                    id:optiondId,
+                    name:optionName,
+                    added_price:Number(optionPrice),
+                    orderProductList: []
+                }
+
 
                 this.optionList.push(newOption);
 
             }
         });
 
-       const newVariant = new ProductVariant(variantId, variantName, variantDescription, this.optionList);
+       let newVariant = {
+           id:variantId,
+           name:variantName,
+           description:variantDescription,
+           options: this.optionList
+       }
+
 
        this.product.variants.push(newVariant);
 
@@ -100,7 +123,22 @@ export class AddVariantOptionComponent {
 
         this.productService.addVariantToProduct(this.product);
 
+        this.refreshProduct();
+
     }
+
+
+    refreshProduct(){
+        this.productService
+            .getProductByIndex(this.productId)
+            .subscribe((product: Product) => {
+                this.product = product;
+                this.product.price = product.price;
+
+
+            });
+    }
+
 
 
 
