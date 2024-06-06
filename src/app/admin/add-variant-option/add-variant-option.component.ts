@@ -98,6 +98,7 @@ export class AddVariantOptionComponent {
         console.log(this.product);
         console.log(this.optionList);
 
+        this.productService.addVariantToProduct(this.product);
 
     }
 
