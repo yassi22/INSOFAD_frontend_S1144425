@@ -20,7 +20,10 @@
                             </div>
                             <div class="col-md-3">
                                 <label>Stock</label>
-                                <p class="lead fw-normal mb-2" aria-label="Stock">{{product.quantity}}</p>
+                                <br>
+                                <input class="form-control" type="number" [id]="product.id" name="quantity" [value]=" product.quantity " step="1">
+                                <br>
+                                <button type="button" class="btn btn-primary" (click)="updateProductQuantity(product)"> Update Quantity </button>
                             </div>
                             <div class="row d-flex flex-wrap">
                                 <div class="col" *ngFor="let variant of product.variants; let i = index">

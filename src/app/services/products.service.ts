@@ -119,6 +119,31 @@ export class ProductsService {
 
   }
 
+  public updateProductQuantity(request: Product): void{
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+    };
+
+
+    this.http
+        .post<Product>( `${this.baseUrl}/${request.id}/updateproduct`, JSON.stringify(request), httpOptions )
+        .subscribe(
+
+            res=>{
+
+              console.log(res);
+
+            },     err=>{
+
+              console.log(err);
+
+            });
+
+  }
+
 
 
 }

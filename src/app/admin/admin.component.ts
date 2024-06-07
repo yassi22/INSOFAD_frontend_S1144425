@@ -16,7 +16,7 @@ export class AdminComponent {
 
   public products: Product[] = new Array<Product>(); 
   
-  public loadingProducts: boolean = true; 
+  public loadingProducts: boolean = true;
 
    
   constructor(private productsService: ProductsService) {
@@ -31,13 +31,22 @@ export class AdminComponent {
       });
   }  
 
+  updateProductQuantity(product: Product) {
 
-  
-  public deleteProductVariantAndOptions(product:Product) {  
- 
-     
-   
-  } 
+    const element:HTMLInputElement | null = document.getElementById(String(product.id)) as HTMLInputElement;
+    console.log(element);
+
+    if(element){
+      const newQuantity = Number(element.value);
+      product.quantity = newQuantity;
+
+      this.productsService.updateProductQuantity(product);
+    }
+
+
+
+  }
+
 
 
 
