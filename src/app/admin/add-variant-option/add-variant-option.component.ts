@@ -25,7 +25,7 @@ export class AddVariantOptionComponent {
 
     @Input() public product!: Product;
     private productId: number;
-   private  optionList:Options[] = [];
+    private  optionList:Options[] = [];
     optionAmount:number[] = [1,2];
 
 
@@ -58,7 +58,7 @@ export class AddVariantOptionComponent {
         // @ts-ignore
         let optionGroupList = optionGroup.childNodes;
 
-        let optiondId:number = 0 ;
+        let optiondId:number = 0;
 
         let variantId:number = 0;
 

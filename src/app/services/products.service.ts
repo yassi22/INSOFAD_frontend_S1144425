@@ -95,5 +95,30 @@ export class ProductsService {
   }
 
 
+  public updateVariantToProduct(request: Product): void{
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+    };
+
+    this.http
+        .post<Product>( `${this.baseUrl}/${request.id}/updateVariants`, JSON.stringify(request), httpOptions )
+        .subscribe(
+
+            res=>{
+
+              console.log(res);
+
+            },     err=>{
+
+              console.log(err);
+
+            });
+
+  }
+
+
 
 }
