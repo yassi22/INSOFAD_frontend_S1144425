@@ -8,7 +8,7 @@ export class ProductVariant {
     public description: string;
     public options: Options[];  
   
-    constructor(id: number, name: string, description: string, options: []) {
+    constructor(id: number, name: string, description: string, options: Options[]) {
         this.id = id;
         this.name = name;
         this.description = description;

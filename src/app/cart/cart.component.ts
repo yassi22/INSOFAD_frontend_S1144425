@@ -96,13 +96,13 @@ export class CartComponent implements OnInit {
     let user_email = this.tokenService.getEmail(); 
     this.products_in_cart = this.cartService.allProductsInCart();  
 
-    let product_ids : number[] = []; 
+    let product_ids : number[] = [];  
 
     this.products_in_cart.forEach( product =>{ 
       product_ids.push(product.id);
     })    
 
-    const order =  new Order(this.products_in_cart, user_email);    
+    const order =  new Order(this.products_in_cart, user_email);
 
     this.productService.sendOrders(order); 
     this.cartService.clearCart();

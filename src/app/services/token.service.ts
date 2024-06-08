@@ -15,6 +15,7 @@ export class TokenService {
   }
 
   public loadToken(): string | null {
+    console.log(localStorage.getItem(this._localStorageTokenKey));
     return localStorage.getItem(this._localStorageTokenKey);
   }
 

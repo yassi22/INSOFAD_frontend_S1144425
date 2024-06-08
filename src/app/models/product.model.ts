@@ -26,6 +26,6 @@ export class Product {
       this.imageUrl = imageUrl; 
       this.quantity = quantity; 
       this.durability = durability; 
-    } 
-    
+    }
+
 }

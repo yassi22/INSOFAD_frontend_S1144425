@@ -10,6 +10,8 @@ export class Options {
         this.name = name;
         this.added_price = added_price;
       }
-      
-  }
+
+
+
+}
   

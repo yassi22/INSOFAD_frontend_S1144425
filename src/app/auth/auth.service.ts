@@ -14,7 +14,7 @@ export class AuthService {
   private _registerEndpoint: string = 'http://localhost:8080/api/auth/register';
 
   public $userIsLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false); 
-  public $userRole: BehaviorSubject<string | null > = new BehaviorSubject<string | null >(null); 
+  public $userRole: BehaviorSubject<string | null > = new BehaviorSubject<string | null >(null);
 
   constructor(private http: HttpClient, private tokenService: TokenService) {
     if (this.tokenService.isValid()) {
@@ -24,6 +24,7 @@ export class AuthService {
 
 
   public login(authRequest: AuthRequest): Observable<AuthResponse> {
+      console.log(authRequest);
     return this.http
       .post<AuthResponse>(this._loginEndpoint, authRequest)
       .pipe(
@@ -31,6 +32,9 @@ export class AuthService {
           this.tokenService.storeToken(authResponse.token);
           this.$userIsLoggedIn.next(true);
           this.$userRole.next(this.tokenService.getRole());
+          console.log("geeft de user role terug:");
+          console.log(this.$userRole);
+          console.log(this.$userRole);
         })
       );
   }
