@@ -12,31 +12,33 @@ import { Router, RouterLink } from '@angular/router';
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.scss'
 })
-export class AdminComponent { 
+export class AdminComponent {
 
-  public products: Product[] = new Array<Product>(); 
-  
+  public products: Product[] = new Array<Product>();
+
   public loadingProducts: boolean = true;
 
-   
+
   constructor(private productsService: ProductsService) {
   }
 
   ngOnInit(): void {
     this.productsService
-      .getProducts()
-      .subscribe((products: Product[]) => {
-        this.loadingProducts = false;  
-        this.products = products; 
-      });
-  }  
+        .getProducts()
+        .subscribe((products: Product[]) => {
+          this.loadingProducts = false;
+          this.products = products;
+          products.sort((a, b) => a.id - b.id);
+
+        });
+  }
 
   updateProductQuantity(product: Product) {
 
-    const element:HTMLInputElement | null = document.getElementById(String(product.id)) as HTMLInputElement;
-    console.log(element);
+    const element: HTMLInputElement | null = document.getElementById(String(product.id)) as HTMLInputElement;
 
-    if(element){
+
+    if (element) {
       const newQuantity = Number(element.value);
       product.quantity = newQuantity;
 
@@ -44,9 +46,18 @@ export class AdminComponent {
     }
 
 
-
   }
 
+  refreshProduct() {
+    this.productsService
+        .getProducts()
+        .subscribe((products: Product[]) => {
+          this.loadingProducts = false;
+          this.products = products;
+          products.sort((a, b) => a.id - b.id);
+
+        });
+  }
 
 
 

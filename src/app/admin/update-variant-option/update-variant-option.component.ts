@@ -38,7 +38,7 @@ export class UpdateVariantOptionComponent {
             .getProductByIndex(this.productId)
             .subscribe((product: Product) => {
                 this.product = product;
-                console.log(this.product);
+
             });
 
     }
@@ -49,7 +49,7 @@ export class UpdateVariantOptionComponent {
 
         this.selectedProductVariant = this.product.variants.find((variant: ProductVariant) => variant.id === Number(selectedId));
 
-         console.log(this.selectedProductVariant);
+
 
     }
 
@@ -95,13 +95,12 @@ export class UpdateVariantOptionComponent {
 
                     const updatedOption = this.selectedProductVariant?.options.find((option: Options) => option.id === Number(optionId));
 
-                    console.log(optionId);
+
 
                     if (updatedOption) {
                         updatedOption.name = optionName;
                         updatedOption.added_price = Number(optionPrice);
-                        console.log("optionsview");
-                        console.log(updatedOption);
+
                     }
 
 
@@ -109,8 +108,6 @@ export class UpdateVariantOptionComponent {
 
 
             });
-            console.log(this.selectedProductVariant);
-            console.log(this.product);
 
             this.productService.updateVariantToProduct(this.product);
 

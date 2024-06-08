@@ -4,6 +4,7 @@ import { CartService } from '../services/cart.service';
 import { Product } from '../models/product.model';
 import { ProductsService } from '../services/products.service'; 
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import {ProductVariant} from "../models/productvariant.model";
 
 @Component({
   selector: 'app-products',
@@ -23,7 +24,8 @@ export class ProductsComponent {
       .subscribe((products: Product[]) => {
         this.loadingProducts = false; 
         //producten worden gesorteerd op product id van laag naar hoog.
-        products.sort((a,b) => a.id - b.id);  
+        products.sort((a,b) => a.id - b.id);
+
         this.products = products;
       });
   }

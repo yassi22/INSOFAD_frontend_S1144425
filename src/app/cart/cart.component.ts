@@ -102,9 +102,7 @@ export class CartComponent implements OnInit {
       product_ids.push(product.id);
     })    
 
-    const order =  new Order(this.products_in_cart, user_email);     
-
-    console.log(order);
+    const order =  new Order(this.products_in_cart, user_email);
 
     this.productService.sendOrders(order); 
     this.cartService.clearCart();

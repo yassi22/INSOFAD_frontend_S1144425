@@ -117,10 +117,6 @@ export class AddVariantOptionComponent {
 
        this.product.variants.push(newVariant);
 
-
-        console.log(this.product);
-        console.log(this.optionList);
-
         this.productService.addVariantToProduct(this.product);
 
         this.refreshProduct();

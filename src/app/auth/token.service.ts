@@ -87,12 +87,13 @@ export class TokenService {
     const token = this.loadToken();  
     if(token != null){ 
       const checkedToken : string = token!;  
-      const userRole = this.getPayload(checkedToken).role;  
-    
+      const userRole = this.getPayload(checkedToken).role;
+      console.log(userRole);
+
       return userRole; 
     } else {  
       //error message toevoegen
-      return  "er is iets mis gegaan"; 
+      return  "je hebt geen role";
     }
 
   }

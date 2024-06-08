@@ -108,8 +108,6 @@ export class DeleteVariantOptionComponent {
         .subscribe((product: Product) => {
           this.product = product;
           this.product.price = product.price;
-
-
         });
   }
 

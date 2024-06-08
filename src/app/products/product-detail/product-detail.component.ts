@@ -40,12 +40,14 @@ export class ProductDetailComponent {
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
       this.productId = params['id'];
+
     });
 
     this.productsService
     .getProductByIndex(this.productId)
     .subscribe((product: Product) => {
-      this.product = product; 
+      this.product = product;
+      product.variants.sort((a,b) => a.id - b.id);
       this.product.price = product.price;   
       if(this.defaultprice == 0 ){ 
         this.defaultprice = product.price; 
@@ -53,12 +55,15 @@ export class ProductDetailComponent {
       this.copyProduct = structuredClone(product); 
       this.copyProduct.variants.forEach((variant) => {
         variant.options = []; 
-      }); 
+      });
 
-     
-    });  
-    
-   
+      this.product.variants.forEach((variant: ProductVariant) => {
+        variant.options.sort((a,b) => a.id - b.id);
+      });
+
+
+    });
+
 
   }   
 

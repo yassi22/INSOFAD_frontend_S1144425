@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../auth/auth.service';
 import { TokenService } from '../auth/token.service';
+import {Token} from "@angular/compiler";
 
 @Component({
   selector: 'app-navigation',
@@ -19,8 +20,9 @@ export class NavigationComponent implements OnInit {
   public showHotCupIcon: boolean = false;
   public userIsLoggedIn: boolean = false; 
   public hasAdminRole: boolean = false; 
-  
+  public userRole: string | null = null;
   public title: string = 'Just Another Day';
+
 
   public amountOfProducts: number = 0;
 
@@ -30,10 +32,24 @@ export class NavigationComponent implements OnInit {
     this.cartService.$productInCart.subscribe((products: Product[]) => {
       this.amountOfProducts = products.length;
     })
+
+    this.userRole = this.tokenService.getRole();
+    console.log(this.userRole);
+
     this.checkLoginState();
 
     this.checkRole();
+
+    this.authService.$userRole.subscribe(role => {
+      this.userRole = this.tokenService.getRole()
+      console.log("subscribe event");
+      this.checkRole();
+
+    });
+
+
 }
+
   public onLogout(): void{ 
     this.authService.logOut();
     this.router.navigate(['']);
@@ -41,6 +57,7 @@ export class NavigationComponent implements OnInit {
 
 
 public checkLoginState(): void{
+    console.log("checkLoginState");
     this.authService
     .$userIsLoggedIn
     .subscribe((loginState: boolean) => {
@@ -48,23 +65,16 @@ public checkLoginState(): void{
     });
   }
 
+  public checkRole(): void {
+    console.log("check role");
+      console.log(this.userRole);
+      if (this.userRole == "ROLE_ADMIN") {
+        this.hasAdminRole = true;
+      } else {
+        this.hasAdminRole = false;
+      }
 
-public checkRole(): void {    
-
-  this.authService
-  .$userRole
-  .subscribe((userRole: string | null) => {
-    if(userRole == "ROLE_ADMIN") {
-      this.hasAdminRole = true;
-    } else { 
-      this.hasAdminRole = false; 
-    }
-    
-  })
-
-
- 
-}
+  }
 
 
 }
