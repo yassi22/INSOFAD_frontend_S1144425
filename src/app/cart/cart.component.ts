@@ -66,7 +66,6 @@ export class CartComponent implements OnInit {
 
   calculateProductPrice(product:Product): number{   
 
-
     let resultPrice = product.price;  
     product.variants.forEach((variant) => 
       variant.options.forEach((option) => 

@@ -34,6 +34,8 @@ export class OrderComponent implements OnInit{
       console.log(orders); 
 
     });
+
+
   }
 
    
