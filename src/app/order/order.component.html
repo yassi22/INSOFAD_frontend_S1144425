@@ -12,29 +12,24 @@
                                 <p class="lead fw-normal mb-2" aria-label="Bestelde product">{{order.orderTitle}}</p>
                             </div>
                             <div *ngFor="let orderProduct of order.orderProducts">
-                            <div class="col-md-3 col-lg-3 col-xl-3">
-                                <img class="lead fw-normal mb-2" src="{{orderProduct.imageUrl}}" aria-label="Bestelde product">
-                            </div>
-                            </div>
-                            <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                <h5 class="mb-0" aria-label="Prijs"> Prijs: {{order.orderPrice}}</h5>
-                            </div>
-                            <div class="col-md-3 col-lg-3 col-xl-3">
-                                <p class="lead fw-normal mb-2" aria-label="Datum"> Datum: {{order.datum}}</p>
-                            </div>
-                            <div class="col-md-3 col-lg-3 col-xl-3">
-                                <h1 class="lead fw-normal mb-2" aria-label="Options"> Options:
-
-                                    <div *ngFor="let orderProduct of order.orderProducts">
+                                <div class="col-md-3 col-lg-3 col-xl-3">
+                                    <img class="lead fw-normal mb-2 img-thumbnail w-75 h-75" src="{{orderProduct.imageUrl}}" aria-label="Bestelde product" style="width: 500px; height: 500px; object-fit: cover;">
+                                    <div class="mt-3">
+                                        <h5 class="lead fw-normal mb-2" aria-label="Options">Options:</h5>
                                         <ul *ngFor="let variant of orderProduct.orderProductVariants">
-                                          <strong> {{variant.name}}: </strong>
+                                            <strong> {{variant.name}}: </strong>
                                             <li *ngFor="let orderOption of variant.orderOptions">
                                                 {{orderOption.name}} : {{orderOption.added_price}}
                                             </li>
-                                            <br>
                                         </ul>
                                     </div>
-                                </h1>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                                <h5 class="mb-0" aria-label="Prijs">Prijs: {{order.orderPrice}}</h5>
+                            </div>
+                            <div class="col-md-3 col-lg-3 col-xl-3">
+                                <p class="lead fw-normal mb-2" aria-label="Datum">Datum: {{order.datum}}</p>
                             </div>
                         </div>
                     </div>
