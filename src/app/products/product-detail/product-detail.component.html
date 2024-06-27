@@ -10,10 +10,7 @@
 
         <h4 class="text-right mt-5 fw-bold" aria-label="Product beschrijving">Beschrijving: </h4> 
  
-        <p class="text-right fst-normal fs-5 1h-sm" aria-label="Product beschrijving" >{{product.description}}</p>    
- 
-
-        <h4 class="text-right mt-5 fw-bold " aria-label="Product Categorie" >Product Categorie: </h4> 
+        <p class="text-right fst-normal fs-5 1h-sm" aria-label="Product beschrijving" >{{product.description}}</p>
         
         <p class="text-right fst-normal fs-5" aria-label="Product Categorie"> {{product.category}}</p>  
 
@@ -25,20 +22,26 @@
 
         <h4 class="text-right mt-5 fw-bold" aria-label="Product Voorraad">Voorraad: </h4> 
  
-        <p class="text-right fst-normal fs-5" aria-label="Product quantity"> {{product.quantity}}</p>      
+        <p class="text-right fst-normal fs-5" aria-label="Product quantity"> {{product.quantity}}</p>
+          @if (product.variants.length > 0) {
+              @for (productvariant of product.variants; track $index) {
+                  <div class="mt-3">
+                      <strong>{{productvariant.name}}</strong><br>
+                      <div class="d-flex flex-wrap">
+                          @for (productoptions of productvariant.options; track $index) {
+                              <div class="form-check me-3">
+                                  <input class="form-check-input" type="radio" aria-label="Product optie" name={{productvariant.name}} (click)="addToPrice(productoptions.added_price, productvariant, productoptions)">
+                                  <label class="form-check-label">
+                                      {{productoptions.name}}: Extra: prijs: {{productoptions.added_price}}
+                                  </label>
+                              </div>
+                          }
+                      </div>
+                  </div>
+              }
+          }
+          <br><br>
 
-        @if (product.variants.length > 0 && product.variants.length > 0 ) { 
-            @for (productvariant of product.variants; track $index) {
-                    {{productvariant.name}} <br>
-            @for (productoptions of productvariant.options; track $index) {   
-                 <input type="radio" aria-label="Product optie" name={{productvariant.name}} (click)="addToPrice(productoptions.added_price, productvariant, productoptions)"> {{productoptions.name}}:   Extra: price :{{productoptions.added_price}}
-
-                 <br><br>
-            }
-            } 
-
-        }
-        <br><br>
 
         <button (click)="buyProduct(product)" aria-label="Product kopen" class="btn btn-primary float-right">
             Buy</button> 
