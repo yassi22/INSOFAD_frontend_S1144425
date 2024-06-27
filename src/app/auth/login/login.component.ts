@@ -4,10 +4,13 @@ import { AuthService } from '../auth.service';
 import { AuthResponse } from '../auth-response.model';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import {PopupComponent} from "../../popup/popup.component";
+import {catchError, throwError} from "rxjs";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   standalone: true,
-  imports: [ReactiveFormsModule],
+    imports: [ReactiveFormsModule, PopupComponent],
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
@@ -15,6 +18,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 export class LoginComponent implements OnInit {
 
   public loginForm: FormGroup = new FormGroup({});
+    public errorMessage: string | null = null;
+    public successMessage: string | null = null;
+    public showPopup: boolean = false;
+    public popupType: 'success' | 'warning' | 'error' | 'info' = 'info';
 
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) { }
 
@@ -26,17 +33,40 @@ export class LoginComponent implements OnInit {
   }
 
   public onSubmit() {
+      this.errorMessage = null;
+      this.successMessage = null;
+      this.showPopup = false;
+
     this.authService
       .login(this.loginForm.value)
+        .pipe(
+            catchError((error: HttpErrorResponse) => {
+                this.errorMessage = 'Er is een fout opgetreden bij het inloggen';
+                this.popupType = 'error';
+                this.showPopup = true;
+                return throwError(() => error);
+            })
+        )
       .subscribe({
         next: (authReponse: AuthResponse) => {
         console.log('AuthResponse: ', authReponse);
-        this.router.navigate(['/products']);
+            this.successMessage = 'U bent succesvol ingelogd';
+            this.popupType = 'success';
+            this.showPopup = true;
+            setTimeout(() => {
+                this.router.navigate(['/products']);
+            }, 1500);
         },
         error: (error) => {
           console.error('Login failed:', error);
+            this.errorMessage = 'De inlog gevens zijn niet juist ingevuld';
+            this.popupType = 'error';
+            this.showPopup = true;
         }
       });
   }
-  
+
+    public closePopup() {
+        this.showPopup = false;
+    }
 }
