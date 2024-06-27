@@ -1,14 +1,12 @@
-import { Component, Input, Output, EventEmitter} from '@angular/core';
-import {NgClass, CommonModule} from "@angular/common";
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-popup',
   templateUrl: './popup.component.html',
+  styleUrls: ['./popup.component.scss'],
   standalone: true,
-  imports: [
-    NgClass,CommonModule
-  ],
-  styleUrls: ['./popup.component.scss']
+  imports: [CommonModule] // Zorg ervoor dat CommonModule is geïmporteerd
 })
 export class PopupComponent {
   @Input() message: string = '';

@@ -4,6 +4,7 @@ import {OrderProductVariant} from "./orderproductvariant.model";
 
 export class OrderProduct {
     id: number;
+    name: string;
     orderProductVariants: OrderProductVariant[];
     imageUrl: string;
 }
