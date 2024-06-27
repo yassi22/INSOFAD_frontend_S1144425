@@ -93,7 +93,27 @@ export class ProductDetailComponent {
   public buyProduct(product: Product) {
 
 
-    let productQuantity = product.quantity; 
+    let productQuantity = product.quantity;
+
+    if (Object.keys(this.optionsDict).length === 0) {
+      alert("Please select options before buying the product.");
+      return;
+    }
+
+    // Check if all options are selected
+    let allOptionsSelected = true;
+    for (let variant of product.variants) {
+      if (!this.optionsDict[variant.name]) {
+        allOptionsSelected = false;
+        break;
+      }
+    }
+
+    if (!allOptionsSelected) {
+      alert("Please select options for all variants before buying the product.");
+      return;
+    }
+
 
     if(productQuantity > 0 ){
       for( let variantName in this.optionsDict){ 
