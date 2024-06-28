@@ -6,11 +6,14 @@ import { ProductsService } from '../../services/products.service';
 import { CartService } from '../../services/cart.service'; 
 import { ProductVariant } from '../../models/productvariant.model';
 import { Options } from '../../models/options.model';
+import {PopupComponent} from "../../popup/popup.component";
 
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [],
+  imports: [
+    PopupComponent
+  ],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.scss'
 })
@@ -18,8 +21,12 @@ export class ProductDetailComponent {
 
   private productId: number; 
   public selectedProductVariant: [ProductVariant | null , number | null ] = [null, null];  
-  public defaultprice: number = 0;    
+  public defaultprice: number = 0;
 
+  public errorMessage: string | null = null;
+  public successMessage: string | null = null;
+  public showPopup: boolean = false;
+  public popupType: 'success' | 'warning' | 'danger' | 'info' = 'info';
 
 
   public copyProduct: Product; 
@@ -93,6 +100,10 @@ export class ProductDetailComponent {
   public buyProduct(product: Product) {
 
 
+    this.errorMessage = null;
+    this.successMessage = null;
+    this.showPopup = false;
+
     let productQuantity = product.quantity;
 
     if (Object.keys(this.optionsDict).length === 0) {
@@ -129,13 +140,23 @@ export class ProductDetailComponent {
  
 
 
-    this.cartService.addProductToCart(this.copyProduct)  
-    
+    this.cartService.addProductToCart(this.copyProduct)
+
+      this.successMessage = 'Product added to cart';
+      this.popupType = 'success';
+      this.showPopup = true;
+
     } else { 
-      alert("Product is out of stock");
+      // alert("Product is out of stock");
+      this.successMessage = 'Product is out of stock';
+      this.popupType = 'warning';
+      this.showPopup = true;
     }
  
 
+  }
+  public closePopup() {
+    this.showPopup = false;
   }
 
 

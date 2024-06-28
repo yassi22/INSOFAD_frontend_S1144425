@@ -53,3 +53,10 @@
     } 
     </div>   
     </div>
+
+<app-popup
+        [message]="(errorMessage || successMessage) ?? ''"
+        [show]="showPopup"
+        [type]="popupType"
+        (close)="closePopup()">
+</app-popup>
