@@ -53,16 +53,16 @@ export class LoginComponent implements OnInit {
             .subscribe({
                 next: (authResponse: AuthResponse) => {
                     console.log('AuthResponse: ', authResponse);
-                    this.successMessage = 'U bent succesvol ingelogd';
+                    this.successMessage = 'U are now logged in';
                     this.popupType = 'success';
                     this.showPopup = true;
                     setTimeout(() => {
                         this.router.navigate(['/products']);
-                    }, 60000);
+                    }, 1000);
                 },
                 error: (error) => {
                     console.error('Login failed:', error);
-                    this.errorMessage = 'Uw heeft niet de juiste gegevens ingevuld';
+                    this.errorMessage = 'Fill the right credentials in';
                     this.popupType = 'danger';
                     this.showPopup = true;
                 }
