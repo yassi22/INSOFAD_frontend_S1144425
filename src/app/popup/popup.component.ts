@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
 export class PopupComponent {
   @Input() message: string = '';
   @Input() show: boolean = false;
-  @Input() type: 'success' | 'warning' | 'error' | 'info' = 'info';
+  @Input() type: 'success' | 'warning' | 'danger' | 'info' = 'info';
   @Output() close = new EventEmitter<void>();
 
   onClose() {
@@ -24,7 +24,7 @@ export class PopupComponent {
         return 'fa-check-circle';
       case 'warning':
         return 'fa-exclamation-triangle';
-      case 'error':
+      case 'danger':
         return 'fa-times-circle';
       case 'info':
         return 'fa-info-circle';
@@ -39,7 +39,7 @@ export class PopupComponent {
         return 'popup-success';
       case 'warning':
         return 'popup-warning';
-      case 'error':
+      case 'danger':
         return 'popup-error';
       case 'info':
         return 'popup-info';

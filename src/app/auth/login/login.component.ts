@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     public errorMessage: string | null = null;
     public successMessage: string | null = null;
     public showPopup: boolean = false;
-    public popupType: 'success' | 'warning' | 'error' | 'info' = 'info';
+    public popupType: 'success' | 'warning' | 'danger' | 'info' = 'info';
 
     constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) { }
 
@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
             .pipe(
                 catchError((error: HttpErrorResponse) => {
                     this.errorMessage = 'Er is een fout opgetreden bij het inloggen';
-                    this.popupType = 'error';
+                    this.popupType = 'warning';
                     this.showPopup = true;
                     return throwError(() => error);
                 })
@@ -56,15 +56,14 @@ export class LoginComponent implements OnInit {
                     this.successMessage = 'U bent succesvol ingelogd';
                     this.popupType = 'success';
                     this.showPopup = true;
-                    // Verplaats de navigatie naar het einde zodat de melding zichtbaar is voordat de router.navigate plaatsvindt
                     setTimeout(() => {
                         this.router.navigate(['/products']);
-                    }, 1500); // Wacht 3 seconden voordat je navigeert
+                    }, 60000);
                 },
                 error: (error) => {
                     console.error('Login failed:', error);
-                    this.errorMessage = 'Er is een fout opgetreden bij het inloggen';
-                    this.popupType = 'error';
+                    this.errorMessage = 'Uw heeft niet de juiste gegevens ingevuld';
+                    this.popupType = 'danger';
                     this.showPopup = true;
                 }
             });
