@@ -8,6 +8,7 @@
                 <div class="card-body p-4">
                     <div class="row">
                         <div class="col-lg-7">
+                            <h5 class="mb-3">ID: {{ order.orderId }}</h5>
                             <div class="card-container">
                                 <div *ngFor="let orderProduct of order.orderProducts;" class="card mb-3">
                                     <div class="card-body">
@@ -20,7 +21,7 @@
                                                     <h5>{{ orderProduct.name }}</h5>
                                                     <ul>
                                                         <li *ngFor="let variant of orderProduct.orderProductVariants;">
-                                                            <span><strong>{{ variant.name }}:</strong> {{ variant.orderOptions[0]?.name }} (+ {{ variant.orderOptions[0]?.added_price || 0 | currency }})</span>
+                                                            <span><strong>{{ variant.name }}:</strong> {{ variant.orderOptions[0].name }} (+ {{ variant.orderOptions[0].added_price || 0 | currency }})</span>
                                                         </li>
                                                     </ul>
                                                 </div>

@@ -21,7 +21,7 @@
                                                             <h5>{{ product.name }}</h5>
                                                             <ul>
                                                                 <li *ngFor="let variant of product.variants; let j = index">
-                                                                    <span *ngIf="variant.options.length > 0"><strong>{{ variant.name }}:</strong> {{ variant.options[0]?.name }} (+ {{ variant.options[0]?.added_price || 0 | currency }})</span>
+                                                                    <span *ngIf="variant.options.length > 0"><strong>{{ variant.name }}:</strong> {{ variant.options[0].name }} (+ {{ variant.options[0].added_price || 0 | currency }})</span>
                                                                 </li>
                                                             </ul>
                                                         </div>
