@@ -1,6 +1,6 @@
 <section class="h-100 h-custom">
     <h1>Cart</h1>
-    <div *ngIf="products_in_cart.length > 0 ">
+    <div *ngIf="products_in_cart.length > 0 else emptyCart">
         <p>View all the products in your cart.</p>
         <br>
         <div class="row d-flex justify-content-center align-items-center h-100">
@@ -76,5 +76,9 @@
             </div>
         </div>
     </div>
+    <ng-template #emptyCart >
+        <p>Your cart is empty.</p>
+    </ng-template>
+
 </section>
 

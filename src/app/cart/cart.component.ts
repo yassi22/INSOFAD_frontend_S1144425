@@ -23,6 +23,7 @@ import { ProductDetailComponent } from '../products/product-detail/product-detai
 }) 
 
 export class CartComponent implements OnInit {
+
   public products_in_cart: Product[] = [];
   public shippingCosts: number = 4.95;
   public totalPrice: number = 0;
@@ -48,6 +49,7 @@ export class CartComponent implements OnInit {
   ngOnInit() {
     this.products_in_cart = this.cartService.allProductsInCart() as Product [];
     this.cartService.$productInCart.subscribe((products: Product[]) => {
+
       this.products_in_cart = products;
       this.calculateTotalPrice();  
       this.selectedProductVariant; 

@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
                     // Verplaats de navigatie naar het einde zodat de melding zichtbaar is voordat de router.navigate plaatsvindt
                     setTimeout(() => {
                         this.router.navigate(['/products']);
-                    }, 3000); // Wacht 3 seconden voordat je navigeert
+                    }, 1500); // Wacht 3 seconden voordat je navigeert
                 },
                 error: (error) => {
                     console.error('Login failed:', error);
