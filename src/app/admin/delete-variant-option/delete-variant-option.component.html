@@ -51,3 +51,10 @@
         <div aria-label="Product niet gevonden">Product not found</div>
     }
 </div>
+
+<app-popup
+        [message]="(errorMessage || successMessage) ?? ''"
+        [show]="showPopup"
+        [type]="popupType"
+        (close)="closePopup()">
+</app-popup>
