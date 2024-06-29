@@ -38,6 +38,8 @@ export class CartService {
     this.saveProductsAndNotifyChange();
   }
 
+
+
   public removeProductFromCart(product_index: number) {
     this.productsInCart.splice(product_index, 1);
     this.saveProductsAndNotifyChange();

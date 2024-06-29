@@ -30,9 +30,7 @@ export class OrderComponent implements OnInit{
     .getOrders()
     .subscribe((orders: GetOrder[]) => {
       this.loadingOrders = false;
-      this.orders = orders; 
-      console.log(orders); 
-
+      this.orders = orders;
     });
 
 

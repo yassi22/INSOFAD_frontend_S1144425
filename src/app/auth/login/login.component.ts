@@ -52,7 +52,6 @@ export class LoginComponent implements OnInit {
             )
             .subscribe({
                 next: (authResponse: AuthResponse) => {
-                    console.log('AuthResponse: ', authResponse);
                     this.successMessage = 'U are now logged in';
                     this.popupType = 'success';
                     this.showPopup = true;

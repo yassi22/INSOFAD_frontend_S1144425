@@ -88,7 +88,6 @@ export class TokenService {
     if(token != null){ 
       const checkedToken : string = token!;  
       const userRole = this.getPayload(checkedToken).role;
-      console.log(userRole);
 
       return userRole; 
     } else {  
