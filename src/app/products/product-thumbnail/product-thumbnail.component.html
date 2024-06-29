@@ -1,20 +1,20 @@
 <div class="card d-flex flex-column">
     <div class="card-body">
-        <img class="productImage" src="{{ product.imageUrl }}" alt="{{ product.name }}">
-        <h5>{{ product.name }}</h5>
-        <p>{{ product.price | currency }}</p>
+        <img class="productImage" aria-label="Product image." src="{{ product.imageUrl }}" alt="{{ product.name }}">
+        <h5 aria-label="Product name">{{ product.name }}</h5>
+        <p aria-label="Product price">{{ product.price | currency }}</p>
         <p>
-            <small>{{ product.category }}</small>
+            <small aria-label="product category" >{{ product.category }}</small>
         </p>
         <p>
-            <small>{{ product.description }}</small>
+            <small aria-label="Product description">{{ product.description }}</small>
         </p>
         <p>
-            <small>{{ product.fitting }}</small>
+            <small aria-label="Product fitting">{{ product.fitting }}</small>
         </p>
     </div>
     <div class="card-footer mt-auto">
-        <a [routerLink]="[product.id]" aria-label="Meer zien" class="btn btn-secondary ps-3 ms-5">Meer zien</a>
+        <a [routerLink]="[product.id]" aria-label="See more"   class="btn btn-secondary ps-3 ms-5">See more</a>
     </div>
 </div>
 

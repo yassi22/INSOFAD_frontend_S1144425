@@ -1,7 +1,7 @@
 <section class="h-100 h-custom">
     <h1>Cart</h1>
     <div *ngIf="products_in_cart.length > 0 else emptyCart">
-        <p>View all the products in your cart.</p>
+        <p aria-label="View all the products in your cart.">View all the products in your cart.</p>
         <br>
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-12 mb-4">
@@ -15,23 +15,23 @@
                                                 <div class="d-flex justify-content-between">
                                                     <div class="d-flex flex-row align-items-center">
                                                         <div class="me-3">
-                                                            <img [src]="product.imageUrl" class="product-image img-fluid rounded-3 resource-img" alt="{{ product.name }}">
+                                                            <img [src]="product.imageUrl" aria-label="Product image" class="product-image img-fluid rounded-3 resource-img" alt="{{ product.name }}">
                                                         </div>
                                                         <div class="me-3">
-                                                            <h5>{{ product.name }}</h5>
+                                                            <h5 aria-label="Product name">{{ product.name }} </h5>
                                                             <ul>
                                                                 <li *ngFor="let variant of product.variants; let j = index">
-                                                                    <span *ngIf="variant.options.length > 0"><strong>{{ variant.name }}:</strong> {{ variant.options[0].name }} (+ {{ variant.options[0].added_price || 0 | currency }})</span>
+                                                                    <span *ngIf="variant.options.length > 0"><strong aria-label="Variant and options">{{ variant.name }}:</strong> {{ variant.options[0].name }} (+ {{ variant.options[0].added_price || 0 | currency }})</span>
                                                                 </li>
                                                             </ul>
                                                         </div>
                                                     </div>
                                                     <div class="d-flex flex-row align-items-center">
                                                         <h5 class="mb-0 me-3">
-                                                            <span class="product-price">{{ calculateProductPrice(product) | currency }}</span>
+                                                            <span class="product-price" aria-label="Total price">{{ calculateProductPrice(product) | currency }}</span>
                                                         </h5>
                                                         <div>
-                                                            <a (click)="removeProductFromCart(i)" class="text-danger remove-btn">Remove</a>
+                                                            <a (click)="removeProductFromCart(i)" aria-label="Remove product from cart" class="text-danger remove-btn">Remove</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -43,19 +43,19 @@
                                     <div class="card bg-light bg-gradient text-black rounded-3">
                                         <div class="card-body">
                                             <div class="d-flex justify-content-between align-items-center mb-3">
-                                                <h5 class="mb-0">Cart details</h5>
+                                                <h5 class="mb-0" aria-label="Cart detials">Cart details</h5>
                                             </div>
                                             <hr class="my-3">
                                             <div class="d-flex justify-content-between">
-                                                <p class="mb-2">Products:</p>
-                                                <p class="mb-2">{{ products_in_cart.length }}</p>
+                                                <p class="mb-2" aria-label="Amount of products in cart">Products:</p>
+                                                <p class="mb-2" >{{ products_in_cart.length }}</p>
                                             </div>
                                             <div class="d-flex justify-content-between">
-                                                <p class="mb-2">Shipping fee:</p>
-                                                <p class="mb-2">{{ shippingCosts | currency:'EUR' }}</p>
+                                                <p class="mb-2" aria-label="Shipping fee">Shipping fee:</p>
+                                                <p class="mb-2" >{{ shippingCosts | currency:'EUR' }}</p>
                                             </div>
                                             <div class="d-flex justify-content-between">
-                                                <p class="mb-2">Total price:</p>
+                                                <p class="mb-2" aria-label="Total price">Total price:</p>
                                                 <p class="mb-2">{{ (totalPrice) | currency:'EUR' }}</p>
                                             </div>
                                         </div>
@@ -67,7 +67,7 @@
                                     <div class="form-group">
                                     </div>
                                     <div class="d-flex justify-content-end mt-4">
-                                        <button type="submit" class="btn btn-primary" aria-label="Bestelling plaatsen">Bestelling plaatsen</button>
+                                        <button type="submit" class="btn btn-primary" aria-label="Place order">Place order</button>
                                     </div>
                                 </form>
                             </div>
@@ -77,7 +77,7 @@
         </div>
     </div>
     <ng-template #emptyCart >
-        <p>Your cart is empty.</p>
+        <p aria-label="Your cart is empty">Your cart is empty.</p>
     </ng-template>
 
 </section>
