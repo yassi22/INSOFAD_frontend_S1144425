@@ -55,10 +55,7 @@ export class UpdateVariantOptionComponent {
 
         this.selectedProductVariant = this.product.variants.find((variant: ProductVariant) => variant.id === Number(selectedId));
 
-
-
     }
-
 
     sendUpdatedVariant(){
         this.errorMessage = null;
