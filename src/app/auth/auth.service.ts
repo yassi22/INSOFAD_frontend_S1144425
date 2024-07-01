@@ -24,7 +24,6 @@ export class AuthService {
 
 
   public login(authRequest: AuthRequest): Observable<AuthResponse> {
-      console.log(authRequest);
     return this.http
       .post<AuthResponse>(this._loginEndpoint, authRequest)
       .pipe(
@@ -32,9 +31,6 @@ export class AuthService {
           this.tokenService.storeToken(authResponse.token);
           this.$userIsLoggedIn.next(true);
           this.$userRole.next(this.tokenService.getRole());
-          console.log("geeft de user role terug:");
-          console.log(this.$userRole);
-          console.log(this.$userRole);
         })
       );
   }

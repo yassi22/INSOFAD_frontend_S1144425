@@ -5,6 +5,9 @@ import { BehaviorSubject, Subject } from 'rxjs';
 import { Product } from '../models/product.model';
 import { ProductVariant } from '../models/productvariant.model'; 
 import { Options } from '../models/options.model';
+import {OrderProduct} from "../models/orderproduct.model";
+import {OrderProductVariant} from "../models/orderproductvariant.model";
+import {OrderOptions} from "../models/orderoptions.model";
 
 const localStorageKey: string = "products-in-cart";
 const ordersKey: string = "user-orders";
@@ -34,6 +37,8 @@ export class CartService {
     this.productsInCart.push(product);
     this.saveProductsAndNotifyChange();
   }
+
+
 
   public removeProductFromCart(product_index: number) {
     this.productsInCart.splice(product_index, 1);
@@ -114,6 +119,22 @@ export class CartService {
       this.productsInCartSubject.next(this.productsInCart);
     }
   }
-  
+
+  calculateTotalPrice(product: OrderProduct): number {
+    if (!product) {
+      console.error("Product is undefined or null");
+      return 0;
+    }
+
+    const basePrice = product.price || 0;
+    const variantsPrice = product.orderProductVariants.reduce((total: number, variant: OrderProductVariant) => {
+      const optionsPrice = variant.orderOptions.reduce((optionTotal: number, option: OrderOptions) => optionTotal + (option.added_price || 0), 0);
+      return total + optionsPrice;
+    }, 0);
+    return basePrice + variantsPrice;
+  }
+
+
+
 
 }
