@@ -7,17 +7,19 @@ import {NgForOf} from "@angular/common";
 import {ProductVariant} from "../../models/productvariant.model";
 import {Option} from "@angular/cli/src/command-builder/utilities/json-schema";
 import {Options} from "../../models/options.model";
+import {PopupComponent} from "../../popup/popup.component";
 
 
 
 @Component({
     selector: 'app-add-variant-option',
     standalone: true,
-  imports: [
-    RouterLink,
-    ReactiveFormsModule,
-    NgForOf
-  ],
+    imports: [
+        RouterLink,
+        ReactiveFormsModule,
+        NgForOf,
+        PopupComponent
+    ],
     templateUrl: './add-variant-option.component.html',
     styleUrl: './add-variant-option.component.scss'
 })
@@ -28,6 +30,10 @@ export class AddVariantOptionComponent {
     private  optionList:Options[] = [];
     optionAmount:number[] = [1,2];
 
+    public errorMessage: string | null = null;
+    public successMessage: string | null = null;
+    public showPopup: boolean = false;
+    public popupType: 'success' | 'warning' | 'danger' | 'info' = 'info';
 
     constructor(private activatedRoute: ActivatedRoute, private productService: ProductsService, private router: Router) {
     }
@@ -114,6 +120,9 @@ export class AddVariantOptionComponent {
            options: this.optionList
        }
 
+        this.successMessage = 'variant added';
+        this.popupType = 'success';
+        this.showPopup = true;
 
        this.product.variants.push(newVariant);
 
@@ -121,6 +130,10 @@ export class AddVariantOptionComponent {
 
         this.refreshProduct();
 
+    }
+
+    public closePopup() {
+        this.showPopup = false;
     }
 
 

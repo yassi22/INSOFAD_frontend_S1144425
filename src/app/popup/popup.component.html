@@ -1,0 +1,7 @@
+<div class="popup" *ngIf="show">
+    <div class="popup-content alert" [ngClass]="'alert-' + type" role="alert">
+        <span class="close-button" (click)="onClose()">&times;</span>
+        <i class="fas {{ icon }}"></i>
+        {{ message }}
+    </div>
+</div>

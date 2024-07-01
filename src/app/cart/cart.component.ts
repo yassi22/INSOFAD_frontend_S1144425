@@ -12,24 +12,31 @@ import { Order } from '../models/order.model';
 import { ProductVariant } from '../models/productvariant.model';
 import { Options } from '../models/options.model'; 
 import { ProductDetailComponent } from '../products/product-detail/product-detail.component';
+import {PopupComponent} from "../popup/popup.component";
 
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [CommonModule, CurrencyPipe, FormsModule],
+  imports: [CommonModule, CurrencyPipe, FormsModule, PopupComponent],
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss'] 
 }) 
 
 export class CartComponent implements OnInit {
+
   public products_in_cart: Product[] = [];
   public shippingCosts: number = 4.95;
   public totalPrice: number = 0;
   public orderEmail: string = ''; 
-  quantity: number = 1;  
+  quantity: number = 1;
 
-  
+  public errorMessage: string | null = null;
+  public successMessage: string | null = null;
+  public showPopup: boolean = false;
+  public popupType: 'success' | 'warning' | 'danger' | 'info' = 'info';
+
+
   public selectedProductVariant: [ProductVariant | null , number | null ] = [null, null];   
   public optionsDict: {[key: string]: Options} = {};    
 
@@ -48,6 +55,7 @@ export class CartComponent implements OnInit {
   ngOnInit() {
     this.products_in_cart = this.cartService.allProductsInCart() as Product [];
     this.cartService.$productInCart.subscribe((products: Product[]) => {
+
       this.products_in_cart = products;
       this.calculateTotalPrice();  
       this.selectedProductVariant; 
@@ -65,7 +73,6 @@ export class CartComponent implements OnInit {
   } 
 
   calculateProductPrice(product:Product): number{   
-
 
     let resultPrice = product.price;  
     product.variants.forEach((variant) => 
@@ -104,10 +111,18 @@ export class CartComponent implements OnInit {
 
     const order =  new Order(this.products_in_cart, user_email);
 
+    this.successMessage = 'Product is ordered';
+    this.popupType = 'success';
+    this.showPopup = true;
+
     this.productService.sendOrders(order); 
     this.cartService.clearCart();
   
-  } 
+  }
+
+  public closePopup() {
+    this.showPopup = false;
+  }
 
   
 

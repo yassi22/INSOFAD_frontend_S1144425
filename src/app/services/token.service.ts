@@ -15,7 +15,6 @@ export class TokenService {
   }
 
   public loadToken(): string | null {
-    console.log(localStorage.getItem(this._localStorageTokenKey));
     return localStorage.getItem(this._localStorageTokenKey);
   }
 
@@ -44,9 +43,6 @@ export class TokenService {
       this.removeToken();
       return false;
     }
-
-    // Hier ook andere validaties op de token 
-    // bijvoorbeeld validatie of de issuer (iss) overeen komt..
   
     return true;
   }

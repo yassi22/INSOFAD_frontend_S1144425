@@ -45,7 +45,6 @@
                                 <a aria-label="Delete variant and options" [routerLink]="['/admin/delete-variant', product.id]" class="text-danger">Delete variant & Option</a>
                             </div>
                             <div class="col-md-3 col-lg-3 col-xl-3 text-start">
-                                <a aria-label="Update Stock" [routerLink]="['/admin/delete-variant', product.id]" class="text-danger">Update Stock</a>
                             </div>
                         </div>
                     </div>
@@ -54,3 +53,10 @@
         </div>
     </div>
 </section>
+<app-popup
+        [message]="(errorMessage || successMessage) ?? ''"
+        [show]="showPopup"
+        [type]="popupType"
+        (close)="closePopup()">
+</app-popup>
+

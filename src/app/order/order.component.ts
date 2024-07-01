@@ -5,6 +5,7 @@ import { AuthService } from '../auth/auth.service';
 import { LoginComponent } from '../auth/login/login.component'; 
 import { GetOrder } from '../models/getorder.model';
 import { Order } from '../models/order.model';
+import {CartService} from "../services/cart.service";
 
 
 @Component({
@@ -22,24 +23,17 @@ export class OrderComponent implements OnInit{
 
  
 
-  constructor(private OrderService: OrderService) {}
+  constructor(private OrderService: OrderService, protected cartService: CartService) {}
  
   ngOnInit(): void {
-      
     this.OrderService
     .getOrders()
     .subscribe((orders: GetOrder[]) => {
       this.loadingOrders = false;
-      this.orders = orders; 
-      console.log(orders); 
-
+      this.orders = orders;
     });
-  }
-
-   
-
 
 
   }
 
-
+  }

@@ -34,7 +34,6 @@ export class NavigationComponent implements OnInit {
     })
 
     this.userRole = this.tokenService.getRole();
-    console.log(this.userRole);
 
     this.checkLoginState();
 
@@ -42,7 +41,6 @@ export class NavigationComponent implements OnInit {
 
     this.authService.$userRole.subscribe(role => {
       this.userRole = this.tokenService.getRole()
-      console.log("subscribe event");
       this.checkRole();
 
     });
@@ -57,7 +55,6 @@ export class NavigationComponent implements OnInit {
 
 
 public checkLoginState(): void{
-    console.log("checkLoginState");
     this.authService
     .$userIsLoggedIn
     .subscribe((loginState: boolean) => {
@@ -66,8 +63,6 @@ public checkLoginState(): void{
   }
 
   public checkRole(): void {
-    console.log("check role");
-      console.log(this.userRole);
       if (this.userRole == "ROLE_ADMIN") {
         this.hasAdminRole = true;
       } else {

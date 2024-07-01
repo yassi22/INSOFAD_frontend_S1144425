@@ -1,0 +1,50 @@
+.popup {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  width: auto;
+  height: auto;
+  background-color: transparent; /* Verwijdert de donkere achtergrond */
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  z-index: 1000;
+}
+
+.popup-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optionele schaduw voor een beter zichtbare popup */
+}
+
+.close-button {
+  position: absolute;
+  top: 5px; /* Aanpassen voor meer naar boven */
+  right: 5px; /* Aanpassen voor meer naar rechts */
+  cursor: pointer;
+}
+
+.popup-success {
+  border-left: 5px solid green;
+}
+
+.popup-warning {
+  border-left: 5px solid orange;
+}
+
+.popup-danger {
+  border-left: 5px solid red;
+}
+
+.popup-info {
+  border-left: 5px solid blue;
+}
+
+i {
+  font-size: 24px;
+}

@@ -7,13 +7,15 @@ import {ProductsService} from "../../services/products.service";
 import {Options} from "../../models/options.model";
 import {ProductVariant} from "../../models/productvariant.model";
 import {NgIf} from "@angular/common";
+import {PopupComponent} from "../../popup/popup.component";
 
 @Component({
   selector: 'app-update-variant-option',
   standalone: true,
     imports: [
         NgForOf,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        PopupComponent
     ],
   templateUrl: './update-variant-option.component.html',
   styleUrl: './update-variant-option.component.scss'
@@ -24,6 +26,10 @@ export class UpdateVariantOptionComponent {
     private productId: number;
     public selectedProductVariant: ProductVariant | undefined;
 
+    public errorMessage: string | null = null;
+    public successMessage: string | null = null;
+    public showPopup: boolean = false;
+    public popupType: 'success' | 'warning' | 'danger' | 'info' = 'info';
 
 
     constructor(private activatedRoute: ActivatedRoute, private productService: ProductsService, private router: Router) {
@@ -55,6 +61,9 @@ export class UpdateVariantOptionComponent {
 
 
     sendUpdatedVariant(){
+        this.errorMessage = null;
+        this.successMessage = null;
+        this.showPopup = false;
 
         // @ts-ignore
         const variantName = document.getElementById("variantName").value;
@@ -109,6 +118,10 @@ export class UpdateVariantOptionComponent {
 
             });
 
+            this.successMessage = 'product variant updated successfully.';
+            this.popupType = 'success';
+            this.showPopup = true;
+
             this.productService.updateVariantToProduct(this.product);
 
             this.refreshProduct();
@@ -116,6 +129,11 @@ export class UpdateVariantOptionComponent {
         }
 
     }
+
+    public closePopup() {
+        this.showPopup = false;
+    }
+
 
 
     refreshProduct(){

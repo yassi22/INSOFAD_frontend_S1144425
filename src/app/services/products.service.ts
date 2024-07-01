@@ -94,7 +94,6 @@ export class ProductsService {
 
   }
 
-
   public updateVariantToProduct(request: Product): void{
 
     const httpOptions = {

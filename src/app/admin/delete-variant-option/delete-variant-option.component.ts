@@ -6,13 +6,15 @@ import { Product } from '../../models/product.model';
 import { ProductsService } from '../../services/products.service';
 import { ElementRef } from '@angular/core';
 import { DeleteVariantOptions } from '../../models/deletevrariantoptions.model';
+import {PopupComponent} from "../../popup/popup.component";
 
 @Component({
   selector: 'app-delete-variant-option',
   standalone: true,
-    imports: [
-        RouterLink
-    ],
+  imports: [
+    RouterLink,
+    PopupComponent
+  ],
   templateUrl: './delete-variant-option.component.html',
   styleUrl: './delete-variant-option.component.scss'
 })
@@ -21,6 +23,11 @@ export class DeleteVariantOptionComponent {
   private productId: number;
   private selectedOptionsList:number[] = [];
   private selectedVariantsList:number[] = [];
+
+  public errorMessage: string | null = null;
+  public successMessage: string | null = null;
+  public showPopup: boolean = false;
+  public popupType: 'success' | 'warning' | 'danger' | 'info' = 'info';
 
   @Input() public product!: Product;
 
@@ -91,15 +98,28 @@ export class DeleteVariantOptionComponent {
   }
 
   postDeleteVariantOptions(){
+
+    this.errorMessage = null;
+    this.successMessage = null;
+    this.showPopup = false;
+
     this.productsService.sendDeleteProductVariantOption(this.buildProductVariantOptionList()).subscribe(() => {
 
       this.refreshProduct();
 
+      this.successMessage = 'variant with options is deleted';
+      this.popupType = 'success';
+      this.showPopup = true;
     });
 
 
 
   }
+
+  public closePopup() {
+    this.showPopup = false;
+  }
+
 
 
   refreshProduct(){
