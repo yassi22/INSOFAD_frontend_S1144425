@@ -3,7 +3,7 @@
         @if (product) {
       <div class="col col-lg-6">
         <p class="text-center mt-4 fs-1 fw-bold" aria-label="Product name"> {{product.name}}</p>
-        <img src={{product.imageUrl}} loading="lazy"  class="img-fluid rounded-3" aria-label="Product images" alt="Picture clothing"/>
+        <img [src]=" product.imageUrl" loading="lazy"  class="img-fluid rounded-3" aria-label="Product images" alt="Picture clothing"/>
         <p class="text-left mt-2 fs-5 fw-bold" aria-label="Product Prijs"> Prijs: {{product.price}}</p> 
         <!-- <button (click)="buyProduct(product)" *ngIf="languageService.language == 'NL'" class="btn btn-primary float-right text-right">Kopen</button>  
         <button (click)="buyProduct(product)" *ngIf="languageService.language == 'EN'" class="btn btn-primary float-right text-right">Buy</button>   -->
