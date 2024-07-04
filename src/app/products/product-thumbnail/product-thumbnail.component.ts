@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { Product } from '../../models/product.model';
+import {NgOptimizedImage} from "@angular/common";
 
 @Component({
   selector: 'app-product-thumbnail',
